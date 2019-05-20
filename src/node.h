@@ -15,7 +15,7 @@ enum Tipo {
 
 class Node {
 private:
-		String nome;
+		std::string nome;
 		Tipo tipo;
 		std::vector<Estrada> estradas;
 		bool visited;
@@ -23,11 +23,11 @@ private:
 		void addEstrada(Node *dest, double peso);
 		bool removeEdgeTo(Node *dest);
 public:
-		Node(String nome, Tipo tipo, std::vector<Estrada> estradas);
-		Node(String nome, Tipo tipo);
+		Node(std::string nome, Tipo tipo, std::vector<Estrada> estradas);
+		Node(std::string nome, Tipo tipo);
 
 		std::vector<Estrada> getEstradas();
-		String getNome();
+		std::string getNome();
 		Tipo getTipo();
 		bool isVisited();
 		void setVisited();

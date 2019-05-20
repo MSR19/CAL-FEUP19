@@ -2,17 +2,18 @@
 #define MAP_H_
 
 #include "Estrada.h"
-#include "Node.h"
+#include "node.h"
 #include "graphviewer.h"
+
 
 class Map {
 private:
 	GraphViewer graphviewer;
-	std::vector<Nodes> pontos;
-	std::vector<Nodes> solucao;
+	std::vector<Node> pontos;
+	std::vector<Node> solucao;
 
 public:
-	Map (std::vector<Nodes> pontos);
+	Map (std::vector<Node> pontos);
 	void addNode (Node node);
 	void addEstrada (Estrada estrada, Node init, Node dest);
 	void solution ();

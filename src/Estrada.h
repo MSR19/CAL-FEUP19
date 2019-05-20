@@ -1,18 +1,18 @@
 #ifndef _ESTRADA_H_
 #define _ESTRADA_H_
 
-#include <string>
+#include <cmath>
+#include "node.h"
 
 class Node;
 
 class Estrada {
-	std::string nome;
+	int id;
 	Node* ini;
 	Node* dest;
 	double peso;
 public:
-	Estrada(std::string nome, Node* ini,Node *dest, double peso);
-	std::string getNome();
+	Estrada(int id, Node* ini,Node *dest);
 	Node* getInicio();
 	Node* getDestino();
 	double getPeso();

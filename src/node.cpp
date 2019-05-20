@@ -1,14 +1,9 @@
 #include "node.h"
 
-Node::Node(std::string nome,Tipo tipo, std::vector<Estrada> estradas) {
-	this->nome = nome;
-	this->tipo = tipo;
-	this->estradas = estradas;
-	this->visited = false;
-}
-
-Node::Node(std::string nome, Tipo tipo) {
-	this->nome = nome;
+Node::Node(int x, int y, std::string nome, Tipo tipo) {
+	this->x = x;
+	this->y = y;
+	this->id = id;
 	this->tipo = tipo;
 	this->visited = false;
 }
@@ -17,8 +12,20 @@ std::vector<Estrada> Node::getEstradas() {
 	return this->estradas;
 }
 
-std::string Node::getNome() {
-	return this->nome;
+void Node::addEstrada (Estrada estrada) {
+	this->estradas.push_back(estrada);
+}
+
+int Node::getId() {
+	return this->id;
+}
+
+int Node::getX() {
+	return this->x;
+}
+
+int Node::getY() {
+	return this->y;
 }
 
 Tipo Node::getTipo() {

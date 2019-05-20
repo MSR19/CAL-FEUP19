@@ -2,7 +2,7 @@
 #define NODE_H_
 
 #include <vector>
-#include <string>
+#include "Estrada.h"
 
 class Estrada;
 
@@ -16,20 +16,23 @@ enum Tipo {
 
 class Node {
 private:
-		std::string nome;
+		int id;
 		Tipo tipo;
+		int x, y;
 		std::vector<Estrada> estradas;
 		bool visited;
 
 		void addEstrada(Node *dest, double peso);
 		bool removeEdgeTo(Node *dest);
 public:
-		Node(std::string nome, Tipo tipo, std::vector<Estrada> estradas);
-		Node(std::string nome, Tipo tipo);
+		Node(int x, int y, int id, Tipo tipo);
 
 		std::vector<Estrada> getEstradas();
-		std::string getNome();
+		void addEstrada (Estrada estrada);
+		int getId();
 		Tipo getTipo();
+		int getX();
+		int getY();
 		bool isVisited();
 		void setVisited();
 };

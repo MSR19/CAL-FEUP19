@@ -1,16 +1,15 @@
 #include "Estrada.h"
 
 
-Estrada::Estrada(std::string nome, Node* ini, Node *dest, double peso) {
-	this->nome = nome;
+Estrada::Estrada(int id, Node* ini, Node *dest) {
+	this->id = id;
 	this->ini =ini;
 	this->dest = dest;
-	this->peso = peso;
+	int x = dest->getX() - ini->getX();
+	int y = dest->getY() - ini->getY();
+	this->peso = sqrt((x*x) + (y*y));
 }
 
-std::string Estrada::getNome() {
-	return this->nome;
-}
 
 Node* Estrada::getInicio() {
 	return this->ini;

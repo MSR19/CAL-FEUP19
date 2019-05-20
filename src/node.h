@@ -10,7 +10,8 @@ enum Tipo {
 	BANCOS,
 	MUSEUS,
 	CORREIO_URGENTE,
-	JUNTAS
+	JUNTAS,
+	NONE,
 };
 
 class Node {

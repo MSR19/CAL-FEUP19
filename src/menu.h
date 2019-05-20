@@ -7,6 +7,7 @@ class Menu {
 private:
 	Map map;
 public:
+	Menu ();
 	void InitialMenu();
 	void LoadMap();
 	void ReformatingMap();

@@ -1,6 +1,6 @@
 #include "node.h"
 
-Node::Node(float x, float y, std::string nome, Tipo tipo) {
+Node::Node(float x, float y, int id, Tipo tipo) {
 	this->x = x;
 	this->y = y;
 	this->id = id;

@@ -72,9 +72,8 @@ Map::Map (string cidade) {
 	i = 0;
 	while (read(fileEdges, buffer, sizeof(buffer)) > 0) {
 		int idNodeInit;
-		Node init;
 		int idNodeDest;
-		Node dest;
+
 		sscanf (*buffer,"(%d,%d)", &idNodeInit, &idNodeDest);
 
 		this->addEstrada(i, idNodeInit, idNodeDest);
@@ -82,7 +81,7 @@ Map::Map (string cidade) {
 		i++;
 	}
 
-	this->graphviewer = gv;
+	this->graphviewer = *gv;
 }
 
 

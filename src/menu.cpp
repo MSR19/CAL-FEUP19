@@ -58,6 +58,7 @@ void Menu::initialMenu() {
 		this->loadMap();
 		break;
 	case 2:
+		if (this->map != NULL) {
 		std::vector<Node> nodes = map.getPontos();
 		cout << "The nodes are the following" << endl;
 		for (unsigned int i = 0; i != nodes.size(); i++) {
@@ -66,9 +67,17 @@ void Menu::initialMenu() {
 		cout << endl << "Chose the node that you want to alter (use the first number): ";
 		int node = this->intHandler(nodes.size());
 		this->chageNode(node);
+		}
+		else {
+			std::cout << endl << "you need to load a map first!" << endl;
+		}
 		break;
 	case 3:
-		this->showSolution();
+		if (this->map != NULL)
+			this->showSolution();
+		else {
+			std::cout << endl << "you need to load a map first!" << endl;
+		}
 		break;
 	case 4:
 		std::cout << endl << "Thank you for your preference!" << endl;

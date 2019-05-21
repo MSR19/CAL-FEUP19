@@ -12,10 +12,10 @@ private:
 	int intHandler (int max);
 public:
 	Menu ();
-	void InitialMenu();
-	void LoadMap();
-	void ReformatingMap();
-	void ShowSolution();
+	void initialMenu();
+	void loadMap();
+	void chageNode(int nodeVectorPos);
+	void showSolution();
 };
 
 #endif

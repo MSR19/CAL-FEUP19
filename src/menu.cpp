@@ -8,7 +8,7 @@ int Menu::intHandler (int max)
 	{
 		inputError = false;
 		std::cin >> choice;
-		if (std::cin.fail() || !(choice >= 0 && choice <= max)) {
+		if (std::cin.fail() || !(choice >= 1 && choice <= max)) {
 			std::cin.clear(); //clear cin flags
 			std::cin.ignore(100000, '\n'); //ignore caracters
 			inputError = true; //sets to true so loop repeats
@@ -40,17 +40,92 @@ std::string Menu::srtingHandler()
 	return choice;
 }
 
+void Menu::initialMenu() {
+	int answer;
+	do {
+	std::cout << "Welcome to Security Van software" << endl << endl;
+	std::cout << "What do you wish to do?" << endl;
+	std::cout << "1: Load the map" << endl;
+	std::cout << "2: Change the type of nodes" << endl;
+	std::cout << "3: View the shortest way" << endl;
+	std::cout << "4: quit" << endl << endl;
 
+	std::cout << "Chose the option you want: ";
+	answer = this->intHandler(4);
 
+	switch (answer) {
+	case 1:
+		this->loadMap();
+		break;
+	case 2:
+		std::vector<Node> nodes = map.getPontos();
+		cout << "The nodes are the following" << endl;
+		for (unsigned int i = 0; i != nodes.size(); i++) {
+			cout << i << ": (Id)" << nodes[i].getId() << " , (X)" << nodes[i].getX() << " , (Y)" << nodes[i].getY() << " , (Type)" << nodes[i].getTipo() << endl;
+		}
+		cout << endl << "Chose the node that you want to alter (use the first number): ";
+		int node = this->intHandler(nodes.size());
+		this->chageNode(node);
+		break;
+	case 3:
+		this->showSolution();
+		break;
+	case 4:
+		std::cout << endl << "Thank you for your preference!" << endl;
+		break;
+	}
+	} while(answer != 4);
+}
 
+void Menu::loadMap() {
+	if (this->map == NULL) {
+		std::cout << endl << "Chose a city to load" << endl;
+		std::cout << "1: Aveiro" << endl;
+		std::cout << "2: Braga" << endl;
+		std::cout << "3: Coimbra" << endl;
+		std::cout << "4: Ermensinde" << endl;
+		std::cout << "5: Fafe" << endl;
+		std::cout << "6: Gondumar" << endl;
+		std::cout << "7: Lisboa" << endl;
+		std::cout << "8: Maia" << endl;
+		std::cout << "9: Porto" << endl;
+		std::cout << "10: Viseu" << endl << endl;
 
+		std::cout << "Chose the city you want: ";
+		int anwer1 = this->intHandler(10);
 
+		//Initializes the map to the corresponding city
+		std::vector<string> cidades = {"","Aveiro","Braga","Coimbra","Ermesinde","Fafe","Gondumar","Lisboa", "Maia", "Porto", "Viseu"};
+		this->map = Map(cidades[anwer1]);
+	}
+	else {
+		std::cout << endl << "You have already loaded a map, please restart the program to use a different map!" << endl;
+	}
+}
 
+void Menu::chageNode(int nodeVectorPos) {
+	std::vector<Node> nodes = map.getPontos();
+	std::cout << "What do you want to change?" << endl;
+	std::cout << "Node now: (X)" << nodes[nodeVectorPos].getX() << ", (Y)" << nodes[nodeVectorPos].getY() << ", (Type)" << nodes[nodeVectorPos].getTipo() << endl;
+	std::cout << "1: change type" << endl;
+	std::cout << "2: bo back" << endl;
 
+	int anwer = this->intHandler(2);
 
+	if (1 == anwer) {
+		//cena para fazer
+	}
 
+}
 
-
-
-
+void Menu::showSolution() {
+	this->map.solution();
+	std::vector<Node> nodeSolucao = map.getSolucao();
+	cout << "The solution is the following" << endl;
+	for (unsigned int i = 0; i != nodeSolucao.size(); i++) {
+		cout << i << ": (Id)" << nodeSolucao[i].getId() << " , (X)" << nodeSolucao[i].getX() << " , (Y)" << nodeSolucao[i].getY() << " , (Type)" << nodeSolucao[i].getTipo() << endl;
+	}
+	cout << endl << "Write anything to go back to main menu: ";
+	string cenas = this->srtingHandler();
+}
 

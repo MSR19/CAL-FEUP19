@@ -27,6 +27,9 @@ private:
 	void addEstrada (int id, int nodeIdInicio, int nodeIdDestino);
 public:
 	Map (string cidade);
+	std::vector<Node> getPontos();
+	std::vector<Node> getSolucao();
+	std::vector<Estrada> getEstradas();
 	void solution ();
 	void dijkstra (Node init, Node dest);
 };

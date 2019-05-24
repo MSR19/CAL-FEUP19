@@ -120,12 +120,29 @@ std::vector<Node*> Map::getPontos() {
 	return this->pontos;
 }
 
+std::vector<Node*> Map::getInterece() {
+	return this->interece;
+}
+
 std::vector<Node*> Map::getSolucao() {
 	return this->solucao;
 }
 
 std::vector<Estrada*> Map::getEstradas() {
 	return this->estradas;
+}
+
+void Map::addPontoInterece (Node* node) {
+	this->interece.push_back(node);
+}
+
+void Map::removePontoInterece (Node* node) {
+	for (unsigned int i = 0; i != this->interece.size(); i++) {
+		cout << interece[i]->getId() << endl;
+		if (this->interece[i] == node) {
+			this->interece.erase(this->interece.begin()+i);
+		}
+	}
 }
 
 void Map::solution () {

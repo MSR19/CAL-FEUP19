@@ -182,18 +182,28 @@ void Menu::chageNode(int nodeVectorPos) {
 		int anwer = this->intHandler(5);
 		switch (anwer) {
 		case 1:
+			if (this->map->getPontos()[nodeVectorPos]->getTipo() != NONE)
+				this->map->removePontoInterece(this->map->getPontos()[nodeVectorPos]);
 			this->map->getPontos()[nodeVectorPos]->setTipo(NONE);
 			break;
 		case 2:
+			if (this->map->getPontos()[nodeVectorPos]->getTipo() == NONE)
+				this->map->addPontoInterece(this->map->getPontos()[nodeVectorPos]);
 			this->map->getPontos()[nodeVectorPos]->setTipo(BANCOS);
 			break;
 		case 3:
+			if (this->map->getPontos()[nodeVectorPos]->getTipo() == NONE)
+							this->map->addPontoInterece(this->map->getPontos()[nodeVectorPos]);
 			this->map->getPontos()[nodeVectorPos]->setTipo(MUSEUS);
 			break;
 		case 4:
+			if (this->map->getPontos()[nodeVectorPos]->getTipo() == NONE)
+							this->map->addPontoInterece(this->map->getPontos()[nodeVectorPos]);
 			this->map->getPontos()[nodeVectorPos]->setTipo(CORREIO_URGENTE);
 			break;
 		case 5:
+			if (this->map->getPontos()[nodeVectorPos]->getTipo() == NONE)
+							this->map->addPontoInterece(this->map->getPontos()[nodeVectorPos]);
 			this->map->getPontos()[nodeVectorPos]->setTipo(JUNTAS);
 			break;
 		}

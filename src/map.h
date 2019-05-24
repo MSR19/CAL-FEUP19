@@ -24,8 +24,11 @@ private:
 public:
 	Map (string cidade);
 	std::vector<Node*> getPontos();
+	std::vector<Node*> getInterece();
 	std::vector<Node*> getSolucao();
 	std::vector<Estrada*> getEstradas();
+	void addPontoInterece (Node* node);
+	void removePontoInterece (Node* node);
 	void solution ();
 	void dijkstra (Node init, Node dest);
 	void exit();

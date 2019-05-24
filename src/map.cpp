@@ -13,30 +13,35 @@ void Map::addNode (int id, float x, float y, Tipo tipo) {
 }
 
 bool Map::addEstrada (int id, int nodeIdInicio, int nodeIdDestino) {
-	Node* inicio = NULL;
-	Node* destino = NULL;
+	Node inicio = Node(0,0,0,NONE);
+	Node destino = inicio;
+	bool x = true;
+	bool y = true;
 
 	for (unsigned int i = 0; i != this->pontos.size(); i++) {
 
-		if (this->pontos[i].getId() == nodeIdInicio)
-			*inicio = this->pontos[i];
+		if (this->pontos[i].getId() == nodeIdInicio) {
+			x = false;
+			inicio = this->pontos[i];
+		}
 
-		if (this->pontos[i].getId() == nodeIdDestino)
-			*destino = this->pontos[i];
+		if (this->pontos[i].getId() == nodeIdDestino) {
+			y = false;
+			destino = this->pontos[i];
+		}
+
 	}
 
-	cout << "saio do loop";
-
-	if (inicio == NULL || destino == NULL) {
-		cout << "descartes" << endl;
+	if (x || y) {
 		return false;
 	}
 	else
 	{
-	Estrada nova = Estrada(id, inicio, destino);
+	Estrada nova = Estrada(id, &inicio, &destino);
 	this->estradas.push_back(nova);
 	return true;
 	}
+
 }
 
 Map::Map (string cidade) {

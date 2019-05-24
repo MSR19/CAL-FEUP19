@@ -86,6 +86,7 @@ void Menu::initialMenu() {
 
 			case JUNTAS:
 				cout << "JUNTAS" << endl;
+				this->map->exit();
 				break;
 			}
 

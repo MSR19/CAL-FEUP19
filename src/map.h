@@ -28,6 +28,7 @@ public:
 	std::vector<Estrada*> getEstradas();
 	void solution ();
 	void dijkstra (Node init, Node dest);
+	void exit();
 };
 
 

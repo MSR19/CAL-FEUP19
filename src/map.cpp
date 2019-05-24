@@ -136,7 +136,9 @@ void Map::dijkstra (Node init, Node dest) {
 
 }
 
-
+void Map::exit() {
+	this->graphviewer->closeWindow();
+}
 
 
 

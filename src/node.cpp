@@ -32,6 +32,10 @@ Tipo Node::getTipo() {
 	return this->tipo;
 }
 
+void Node::setTipo(Tipo tipo) {
+	this->tipo = tipo;
+}
+
 bool Node::isVisited() {
 	return this->visited;
 }

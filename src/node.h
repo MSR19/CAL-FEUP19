@@ -31,6 +31,7 @@ public:
 		void addEstrada (Estrada estrada);
 		int getId();
 		Tipo getTipo();
+		void setTipo (Tipo tipo);
 		float getX();
 		float getY();
 		bool isVisited();

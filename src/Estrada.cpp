@@ -8,6 +8,8 @@ Estrada::Estrada(int id, Node* ini, Node *dest) {
 	float x = dest->getX() - ini->getX();
 	float y = dest->getY() - ini->getY();
 	this->peso = sqrt((x*x) + (y*y));
+	ini->addEstrada(*this);
+	dest->addEstrada(*this);
 }
 
 

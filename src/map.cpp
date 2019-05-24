@@ -111,7 +111,7 @@ Map::Map (string cidade) {
 		if (this->addEstrada(i, idNodeInit, idNodeDest))
 			gv->addEdge(i,idNodeInit,idNodeDest,0);
 		i++;
-		cout << edges << endl << idNodeInit << "/" << idNodeDest << endl << i << "Isto vai dar merda!" << endl;
+
 	}
 
 }

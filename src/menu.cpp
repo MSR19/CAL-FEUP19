@@ -66,7 +66,29 @@ void Menu::initialMenu() {
 		std::vector<Node> nodes = this->map->getPontos();
 		cout << "The nodes are the following" << endl;
 		for (unsigned int i = 0; i != nodes.size(); i++) {
-			cout << i << ": (Id)" << nodes[i].getId() << " , (X)" << nodes[i].getX() << " , (Y)" << nodes[i].getY() << " , (Type)" << nodes[i].getTipo() << endl;
+			cout << i << ": (Id)" << nodes[i].getId() << " , (X)" << nodes[i].getX() << " , (Y)" << nodes[i].getY() << " , (Type)";
+			switch (nodes[i].getTipo()) {
+			case NONE:
+				cout << "NONE" << endl;
+				break;
+
+			case BANCOS:
+				cout << "BANCOS" << endl;
+				break;
+
+			case MUSEUS:
+				cout << "MUSEUS" << endl;
+				break;
+
+			case CORREIO_URGENTE:
+				cout << "CORREIO URGENTE" << endl;
+				break;
+
+			case JUNTAS:
+				cout << "JUNTAS" << endl;
+				break;
+			}
+
 		}
 		cout << endl << "Chose the node that you want to alter (use the first number): ";
 		int node = this->intHandler(nodes.size());
@@ -120,14 +142,60 @@ void Menu::loadMap() {
 void Menu::chageNode(int nodeVectorPos) {
 	std::vector<Node> nodes = this->map->getPontos();
 	std::cout << "What do you want to change?" << endl;
-	std::cout << "Node now: (X)" << nodes[nodeVectorPos].getX() << ", (Y)" << nodes[nodeVectorPos].getY() << ", (Type)" << nodes[nodeVectorPos].getTipo() << endl;
+	std::cout << "Node now: (X)" << nodes[nodeVectorPos].getX() << ", (Y)" << nodes[nodeVectorPos].getY() << ", (Type)";
+	switch (nodes[nodeVectorPos].getTipo()) {
+		case NONE:
+			cout << "NONE" << endl;
+			break;
+
+		case BANCOS:
+			cout << "BANCOS" << endl;
+			break;
+
+		case MUSEUS:
+			cout << "MUSEUS" << endl;
+			break;
+
+		case CORREIO_URGENTE:
+			cout << "CORREIO URGENTE" << endl;
+			break;
+
+		case JUNTAS:
+			cout << "JUNTAS" << endl;
+			break;
+	}
 	std::cout << "1: change type" << endl;
 	std::cout << "2: bo back" << endl;
 
 	int anwer = this->intHandler(2);
 
 	if (1 == anwer) {
-		//cena para fazer
+		cout << endl << "Which of the following types do you want?" << endl;
+		cout << "1: NONE" << endl;
+		cout << "2: BANCOS" << endl;
+		cout << "3: MUSEUS" << endl;
+		cout << "4: CORREIO_URGENTE" << endl;
+		cout << "5: JUNTAS" << endl << endl;
+
+		cout << "Chose the type you want: ";
+		int anwer = this->intHandler(5);
+		switch (anwer) {
+		case 1:
+			this->map->getPontos()[nodeVectorPos].setTipo(NONE);
+			break;
+		case 2:
+			this->map->getPontos()[nodeVectorPos].setTipo(BANCOS);
+			break;
+		case 3:
+			this->map->getPontos()[nodeVectorPos].setTipo(MUSEUS);
+			break;
+		case 4:
+			this->map->getPontos()[nodeVectorPos].setTipo(CORREIO_URGENTE);
+			break;
+		case 5:
+			this->map->getPontos()[nodeVectorPos].setTipo(JUNTAS);
+			break;
+		}
 	}
 
 }

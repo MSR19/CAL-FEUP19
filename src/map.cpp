@@ -3,7 +3,7 @@
 
 
 void Map::addNode (int id, float x, float y, Tipo tipo) {
-	Node novo = Node(x, y, id, tipo);
+	Node* novo = new Node(x, y, id, tipo);
 	this->pontos.push_back(novo);
 
 	Tipo tip = NONE;
@@ -13,19 +13,19 @@ void Map::addNode (int id, float x, float y, Tipo tipo) {
 }
 
 bool Map::addEstrada (int id, int nodeIdInicio, int nodeIdDestino) {
-	Node inicio = Node(0,0,0,NONE);
-	Node destino = inicio;
+	Node* inicio = NULL;
+	Node* destino = NULL;
 	bool x = true;
 	bool y = true;
 
 	for (unsigned int i = 0; i != this->pontos.size(); i++) {
 
-		if (this->pontos[i].getId() == nodeIdInicio) {
+		if (this->pontos[i]->getId() == nodeIdInicio) {
 			x = false;
 			inicio = this->pontos[i];
 		}
 
-		if (this->pontos[i].getId() == nodeIdDestino) {
+		if (this->pontos[i]->getId() == nodeIdDestino) {
 			y = false;
 			destino = this->pontos[i];
 		}
@@ -37,8 +37,8 @@ bool Map::addEstrada (int id, int nodeIdInicio, int nodeIdDestino) {
 	}
 	else
 	{
-	Estrada nova = Estrada(id, &inicio, &destino);
-	this->estradas.push_back(nova);
+	Estrada nova = Estrada(id, inicio, destino);
+	this->estradas.push_back(&nova);
 	return true;
 	}
 
@@ -53,7 +53,7 @@ Map::Map (string cidade) {
 	gv->defineEdgeColor("green");
 
 	gv->addNode(5000,0,0);
-	this->pontos.push_back(Node(5000, 0, 0, NONE));
+	this->pontos.push_back(new Node(5000, 0, 0, NONE));
 
 	string edges = "/T08_edges_";
 	string nodes = "/T08_nodes_X_Y_";
@@ -96,7 +96,7 @@ Map::Map (string cidade) {
 	}
 
 	for (unsigned int i = 0; i != pontos.size(); i++) {
-		gv->addNode(pontos[i].getId(), pontos[i].getX()-menorX, pontos[i].getY()-menorY);
+		gv->addNode(pontos[i]->getId(), pontos[i]->getX()-menorX, pontos[i]->getY()-menorY);
 	}
 
 
@@ -116,15 +116,15 @@ Map::Map (string cidade) {
 
 }
 
-std::vector<Node> Map::getPontos() {
+std::vector<Node*> Map::getPontos() {
 	return this->pontos;
 }
 
-std::vector<Node> Map::getSolucao() {
+std::vector<Node*> Map::getSolucao() {
 	return this->solucao;
 }
 
-std::vector<Estrada> Map::getEstradas() {
+std::vector<Estrada*> Map::getEstradas() {
 	return this->estradas;
 }
 

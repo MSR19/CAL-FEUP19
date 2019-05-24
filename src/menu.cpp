@@ -63,11 +63,11 @@ void Menu::initialMenu() {
 		break;
 	case 2:
 		if (this->map != NULL) {
-		std::vector<Node> nodes = this->map->getPontos();
+		std::vector<Node*> nodes = this->map->getPontos();
 		cout << "The nodes are the following" << endl;
 		for (unsigned int i = 0; i != nodes.size(); i++) {
-			cout << i << ": (Id)" << nodes[i].getId() << " , (X)" << nodes[i].getX() << " , (Y)" << nodes[i].getY() << " , (Type)";
-			switch (nodes[i].getTipo()) {
+			cout << i << ": (Id)" << nodes[i]->getId() << " , (X)" << nodes[i]->getX() << " , (Y)" << nodes[i]->getY() << " , (Type)";
+			switch (nodes[i]->getTipo()) {
 			case NONE:
 				cout << "NONE" << endl;
 				break;
@@ -140,10 +140,10 @@ void Menu::loadMap() {
 }
 
 void Menu::chageNode(int nodeVectorPos) {
-	std::vector<Node> nodes = this->map->getPontos();
+	std::vector<Node*> nodes = this->map->getPontos();
 	std::cout << "What do you want to change?" << endl;
-	std::cout << "Node now: (X)" << nodes[nodeVectorPos].getX() << ", (Y)" << nodes[nodeVectorPos].getY() << ", (Type)";
-	switch (nodes[nodeVectorPos].getTipo()) {
+	std::cout << "Node now: (X)" << nodes[nodeVectorPos]->getX() << ", (Y)" << nodes[nodeVectorPos]->getY() << ", (Type)";
+	switch (nodes[nodeVectorPos]->getTipo()) {
 		case NONE:
 			cout << "NONE" << endl;
 			break;
@@ -181,19 +181,19 @@ void Menu::chageNode(int nodeVectorPos) {
 		int anwer = this->intHandler(5);
 		switch (anwer) {
 		case 1:
-			this->map->getPontos()[nodeVectorPos].setTipo(NONE);
+			this->map->getPontos()[nodeVectorPos]->setTipo(NONE);
 			break;
 		case 2:
-			this->map->getPontos()[nodeVectorPos].setTipo(BANCOS);
+			this->map->getPontos()[nodeVectorPos]->setTipo(BANCOS);
 			break;
 		case 3:
-			this->map->getPontos()[nodeVectorPos].setTipo(MUSEUS);
+			this->map->getPontos()[nodeVectorPos]->setTipo(MUSEUS);
 			break;
 		case 4:
-			this->map->getPontos()[nodeVectorPos].setTipo(CORREIO_URGENTE);
+			this->map->getPontos()[nodeVectorPos]->setTipo(CORREIO_URGENTE);
 			break;
 		case 5:
-			this->map->getPontos()[nodeVectorPos].setTipo(JUNTAS);
+			this->map->getPontos()[nodeVectorPos]->setTipo(JUNTAS);
 			break;
 		}
 	}
@@ -202,10 +202,31 @@ void Menu::chageNode(int nodeVectorPos) {
 
 void Menu::showSolution() {
 	this->map->solution();
-	std::vector<Node> nodeSolucao = this->map->getSolucao();
+	std::vector<Node*> nodeSolucao = this->map->getSolucao();
 	cout << "The solution is the following" << endl;
 	for (unsigned int i = 0; i != nodeSolucao.size(); i++) {
-		cout << i << ": (Id)" << nodeSolucao[i].getId() << " , (X)" << nodeSolucao[i].getX() << " , (Y)" << nodeSolucao[i].getY() << " , (Type)" << nodeSolucao[i].getTipo() << endl;
+		cout << i << ": (Id)" << nodeSolucao[i]->getId() << " , (X)" << nodeSolucao[i]->getX() << " , (Y)" << nodeSolucao[i]->getY() << " , (Type)";
+		switch (nodeSolucao[i]->getTipo()) {
+			case NONE:
+				cout << "NONE" << endl;
+				break;
+
+			case BANCOS:
+				cout << "BANCOS" << endl;
+				break;
+
+			case MUSEUS:
+				cout << "MUSEUS" << endl;
+				break;
+
+			case CORREIO_URGENTE:
+				cout << "CORREIO URGENTE" << endl;
+				break;
+
+			case JUNTAS:
+				cout << "JUNTAS" << endl;
+				break;
+		}
 	}
 	cout << endl << "Write anything to go back to main menu: ";
 	string cenas = this->srtingHandler();

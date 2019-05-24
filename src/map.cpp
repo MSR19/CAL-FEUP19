@@ -12,7 +12,7 @@ void Map::addNode (int id, float x, float y, Tipo tipo) {
 	}
 }
 
-void Map::addEstrada (int id, int nodeIdInicio, int nodeIdDestino) {
+bool Map::addEstrada (int id, int nodeIdInicio, int nodeIdDestino) {
 	Node* inicio = NULL;
 	Node* destino = NULL;
 
@@ -23,11 +23,20 @@ void Map::addEstrada (int id, int nodeIdInicio, int nodeIdDestino) {
 
 		if (this->pontos[i].getId() == nodeIdDestino)
 			*destino = this->pontos[i];
-
 	}
 
+	cout << "saio do loop";
+
+	if (inicio == NULL || destino == NULL) {
+		cout << "descartes" << endl;
+		return false;
+	}
+	else
+	{
 	Estrada nova = Estrada(id, inicio, destino);
 	this->estradas.push_back(nova);
+	return true;
+	}
 }
 
 Map::Map (string cidade) {
@@ -50,53 +59,54 @@ Map::Map (string cidade) {
 	edges = auxS + cidade + edges + cidade + auxS2;
 	nodes = auxS + cidade + nodes + cidade + auxS2;
 
-	std::cout << "Isto da merda?" << endl;
-	int fileNodes = open(nodes.c_str(), O_RDONLY);
-	if (fileNodes == -1) {
-		std::cout << "File nodes did not open! closing the map!" << endl;
+	//Opening files
+	ifstream fileNode;
+	fileNode.open(nodes, ios::in);
+	if (!fileNode.good()) {
+		cout << "File node failed to open" << endl;
 		return;
 	}
-	else {
-		std::cout << "File Open nodes!" << endl;
-	}
+	getline(fileNode,nodes);
 
-	int fileEdges = open(edges.c_str(), O_RDONLY);
-	if (fileEdges == -1) {
-		std::cout << "File edges did not open! closing the map!" << endl;
+	ifstream fileEdge;
+	fileEdge.open(edges, ios::in);
+	if (!fileEdge.good()) {
+		cout << "File edge failed to open" << endl;
 		return;
 	}
-	else {
-		std::cout << "File Open edges!" << endl;
-	}
+	getline(fileEdge,edges);
 
-	int i = 0;
-	char buffer [500] = "";
-	while (read(fileNodes, &buffer, sizeof(buffer)) > 0) {
+	unsigned int menorX = -1;
+	unsigned int menorY = -1;
+	while (getline(fileNode,nodes)) {
 		int id;
 		float x;
 		float y;
-		sscanf (buffer,"(%d,%f,%f)",&id, &x, &y);
-
-		if (i%1000 == 0)
-			this->addNode(id,x, y, BANCOS);
-		else
-			this->addNode(id,x, y, NONE);
-
-		gv->addNode(id, x, y);
-		i++;
-		cout << "reading " << i << " ! X:" << x << " / Y:" << y << " /" << endl;
+		sscanf (nodes.c_str(),"(%d,%f,%f)",&id, &x, &y);
+		this->addNode(id,x, y, NONE);
+		if (menorX > x)
+			menorX = x;
+		if (menorY > y)
+			menorY = y;
 	}
 
-	i = 0;
-	while (read(fileEdges, &buffer, sizeof(buffer)) > 0) {
+	for (unsigned int i = 0; i != pontos.size(); i++) {
+		gv->addNode(pontos[i].getId(), pontos[i].getX()-menorX, pontos[i].getY()-menorY);
+	}
+
+
+	int i = 0;
+	while (getline(fileEdge,edges)) {
+
 		int idNodeInit;
 		int idNodeDest;
 
-		sscanf (buffer,"(%d,%d)", &idNodeInit, &idNodeDest);
+		sscanf (edges.c_str(),"(%d,%d)",&idNodeInit, &idNodeDest);
 
-		this->addEstrada(i, idNodeInit, idNodeDest);
-		gv->addEdge(i,idNodeInit,idNodeDest,0);
+		if (this->addEstrada(i, idNodeInit, idNodeDest))
+			gv->addEdge(i,idNodeInit,idNodeDest,0);
 		i++;
+		cout << edges << endl << idNodeInit << "/" << idNodeDest << endl << i << "Isto vai dar merda!" << endl;
 	}
 
 }

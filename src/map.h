@@ -3,12 +3,8 @@
 
 #include <string>
 #include <stdio.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-
-
+#include <iostream>
+#include <fstream>
 
 #include "Estrada.h"
 #include "node.h"
@@ -24,7 +20,7 @@ private:
 	std::vector<Node> solucao;
 
 	void addNode (int id, float x, float y, Tipo tipo);
-	void addEstrada (int id, int nodeIdInicio, int nodeIdDestino);
+	bool addEstrada (int id, int nodeIdInicio, int nodeIdDestino);
 public:
 	Map (string cidade);
 	std::vector<Node> getPontos();

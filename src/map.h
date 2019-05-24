@@ -17,7 +17,7 @@
 
 class Map {
 private:
-	GraphViewer graphviewer;
+	GraphViewer* graphviewer;
 	std::vector<Node> pontos;
 	std::vector<Node> interece;
 	std::vector<Estrada> estradas;

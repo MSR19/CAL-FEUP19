@@ -6,7 +6,7 @@
 
 class Menu {
 private:
-	Map map;
+	Map* map;
 
 	string srtingHandler ();
 	int intHandler (int max);

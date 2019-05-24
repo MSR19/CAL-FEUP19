@@ -11,16 +11,16 @@ void Map::addNode (int id, float x, float y, Tipo tipo) {
 }
 
 void Map::addEstrada (int id, int nodeIdInicio, int nodeIdDestino) {
-	Node inicio;
-	Node destino;
+	Node* inicio = NULL;
+	Node* destino = NULL;
 
 	for (unsigned int i = 0; i != this->pontos.size(); i++) {
 
 		if (this->pontos[i].getId() == nodeIdInicio)
-			inicio = this->pontos[i];
+			*inicio = this->pontos[i];
 
 		if (this->pontos[i].getId() == nodeIdDestino)
-			destino = this->pontos[i];
+			*destino = this->pontos[i];
 
 	}
 
@@ -29,10 +29,12 @@ void Map::addEstrada (int id, int nodeIdInicio, int nodeIdDestino) {
 }
 
 Map::Map (string cidade) {
-	GraphViewer *gv = new GraphViewer(50, 50, false);
-	gv->createWindow(50, 50);
-	gv->defineVertexColor("blue");
-	gv->defineEdgeColor("green");
+
+	this->graphviewer = GraphViewer(50, 50, false);
+	//GraphViewer *gv = new GraphViewer(50, 50, false);
+	//gv->createWindow(50, 50);
+	//gv->defineVertexColor("blue");
+	//gv->defineEdgeColor("green");
 
 	string edges = "T08_edges_";
 	string nodes = "T08_nodes_X_Y_";
@@ -65,7 +67,7 @@ Map::Map (string cidade) {
 		else
 			this->addNode(id,x, y, NONE);
 
-		gv->addNode(id, x, y);
+		//gv->addNode(id, x, y);
 		i++;
 	}
 
@@ -77,11 +79,11 @@ Map::Map (string cidade) {
 		sscanf (*buffer,"(%d,%d)", &idNodeInit, &idNodeDest);
 
 		this->addEstrada(i, idNodeInit, idNodeDest);
-		gv->addEdge(i,idNodeInit,idNodeDest,0);
+		//gv->addEdge(i,idNodeInit,idNodeDest,0);
 		i++;
 	}
 
-	this->graphviewer = *gv;
+	//this->graphviewer = *gv;
 }
 
 

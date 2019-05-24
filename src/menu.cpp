@@ -1,5 +1,9 @@
 #include "menu.h"
 
+Menu::Menu() {
+	this->map = NULL;
+}
+
 int Menu::intHandler (int max)
 {
 	int choice;
@@ -59,7 +63,7 @@ void Menu::initialMenu() {
 		break;
 	case 2:
 		if (this->map != NULL) {
-		std::vector<Node> nodes = map.getPontos();
+		std::vector<Node> nodes = map->getPontos();
 		cout << "The nodes are the following" << endl;
 		for (unsigned int i = 0; i != nodes.size(); i++) {
 			cout << i << ": (Id)" << nodes[i].getId() << " , (X)" << nodes[i].getX() << " , (Y)" << nodes[i].getY() << " , (Type)" << nodes[i].getTipo() << endl;
@@ -105,7 +109,7 @@ void Menu::loadMap() {
 
 		//Initializes the map to the corresponding city
 		std::vector<string> cidades = {"","Aveiro","Braga","Coimbra","Ermesinde","Fafe","Gondumar","Lisboa", "Maia", "Porto", "Viseu"};
-		this->map = Map(cidades[anwer1]);
+		this->map = new Map(cidades[anwer1]);
 	}
 	else {
 		std::cout << endl << "You have already loaded a map, please restart the program to use a different map!" << endl;
@@ -113,7 +117,7 @@ void Menu::loadMap() {
 }
 
 void Menu::chageNode(int nodeVectorPos) {
-	std::vector<Node> nodes = map.getPontos();
+	std::vector<Node> nodes = map->getPontos();
 	std::cout << "What do you want to change?" << endl;
 	std::cout << "Node now: (X)" << nodes[nodeVectorPos].getX() << ", (Y)" << nodes[nodeVectorPos].getY() << ", (Type)" << nodes[nodeVectorPos].getTipo() << endl;
 	std::cout << "1: change type" << endl;
@@ -128,8 +132,8 @@ void Menu::chageNode(int nodeVectorPos) {
 }
 
 void Menu::showSolution() {
-	this->map.solution();
-	std::vector<Node> nodeSolucao = map.getSolucao();
+	this->map->solution();
+	std::vector<Node> nodeSolucao = map->getSolucao();
 	cout << "The solution is the following" << endl;
 	for (unsigned int i = 0; i != nodeSolucao.size(); i++) {
 		cout << i << ": (Id)" << nodeSolucao[i].getId() << " , (X)" << nodeSolucao[i].getX() << " , (Y)" << nodeSolucao[i].getY() << " , (Type)" << nodeSolucao[i].getTipo() << endl;

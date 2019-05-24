@@ -4,6 +4,8 @@
 #include <iostream>
 #include <sstream>
 
+#include "menu.h"
+
 void exercicio1();
 void exercicio2();
 void exercicio3();
@@ -11,14 +13,8 @@ void exercicio3();
 
 void exercicio1()
 {
-GraphViewer *gv = new GraphViewer(50, 50, false);
-gv->createWindow(50, 50);
-gv->defineVertexColor("blue");
-gv->defineEdgeColor("green");
-
-gv->addNode(0, 2, 2);
-gv->addNode(1, 4, 4);
-gv->addEdge(2,0,1,0);
+Menu* menu = new Menu();
+menu->initialMenu();
 }
 
 void exercicio2()

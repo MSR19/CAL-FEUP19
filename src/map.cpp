@@ -32,31 +32,41 @@ void Map::addEstrada (int id, int nodeIdInicio, int nodeIdDestino) {
 
 Map::Map (string cidade) {
 
-	GraphViewer *gv = new GraphViewer(50, 50,false);
+	GraphViewer *gv = new GraphViewer(500, 500,false);
 	graphviewer = gv;
-	gv->createWindow(50, 50);
+	gv->createWindow(5000, 5000);
 	gv->defineVertexColor("blue");
 	gv->defineEdgeColor("green");
 
-	string edges = "T08_edges_";
-	string nodes = "T08_nodes_X_Y_";
+	gv->addNode(5000,0,0);
+	this->pontos.push_back(Node(5000, 0, 0, NONE));
 
-	string auxS = "T08/";
+	string edges = "/T08_edges_";
+	string nodes = "/T08_nodes_X_Y_";
+
+	string auxS = "./T08/";
 	string auxS2 = ".txt";
 
-	edges =auxS + cidade +"/"+ edges + cidade + auxS2;
-	nodes =auxS + cidade +"/"+ nodes + cidade+ auxS2;
+	edges = auxS + cidade + edges + cidade + auxS2;
+	nodes = auxS + cidade + nodes + cidade + auxS2;
 
+	std::cout << "Isto da merda?" << endl;
 	int fileNodes = open(nodes.c_str(), O_RDONLY);
-	if (fileNodes == NULL) {
+	if (fileNodes == -1) {
 		std::cout << "File nodes did not open! closing the map!" << endl;
 		return;
 	}
+	else {
+		std::cout << "File Open nodes!" << endl;
+	}
 
 	int fileEdges = open(edges.c_str(), O_RDONLY);
-	if (fileEdges == NULL) {
+	if (fileEdges == -1) {
 		std::cout << "File edges did not open! closing the map!" << endl;
 		return;
+	}
+	else {
+		std::cout << "File Open edges!" << endl;
 	}
 
 	int i = 0;
@@ -74,6 +84,7 @@ Map::Map (string cidade) {
 
 		gv->addNode(id, x, y);
 		i++;
+		cout << "reading " << i << " ! X:" << x << " / Y:" << y << " /" << endl;
 	}
 
 	i = 0;

@@ -145,8 +145,27 @@ void Map::removePontoInterece (Node* node) {
 	}
 }
 
-void Map::solution () {
+void Map::solution (Node* pontoInicial) {
+	std::vector<Node*> solucaoTemporaria = {};
+	double pesoMenor = INF;
 
+	for (unsigned int i = 0; i != this->interece.size(); i++) {
+		if (!this->interece[i]->isVisited()) {
+			if (pesoMenor > this->dijkstra(pontoInicial, interece[i])){
+				solucaoTemporaria = this->getCaminho(pontoInicial, interece[i]);
+			}
+		}
+	}
+	if (solucaoTemporaria.size() > 0) {
+		if (this->solucao.size() > 1)
+			this->solucao.insert(this->solucao.end(), solucaoTemporaria.begin()+1, solucaoTemporaria.end());
+		else
+			this->solucao = solucaoTemporaria;
+		this->solucao(solucaoTemporaria.end());
+	}
+	else {
+		this->iluminaSolucaoMapa();
+	}
 }
 
 double Map::dijkstra (Node* init, Node* dest) {
@@ -170,7 +189,7 @@ double Map::dijkstra (Node* init, Node* dest) {
 }
 
 std::vector<Node*> Map::getCaminho(Node* init, Node* dest) {
-	vector<Node*> solucaoTemporaria;
+	std::vector<Node*> solucaoTemporaria;
 	if (dest->getPeso() == INF)
 		return solucaoTemporaria;
 	for ( ; dest != nullptr; dest = dest->getCaminho())
@@ -195,6 +214,12 @@ void Map::inicializacaoDijkstra(Node* pontoInicial) {
 		node->setPeso(INF);
 	}
 	pontoInicial->setPeso(0);
+}
+
+void Map::iluminaSolucaoMapa() {
+	for (unsigned int i = 0; i != this->solucao.size(); i++) {
+		this->graphviewer->setVertexColor(this->solucao[i]->getId(), "red");
+	}
 }
 
 void Map::exit() {

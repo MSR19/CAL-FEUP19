@@ -37,11 +37,12 @@ public:
 	std::vector<Estrada*> getEstradas();
 	void addPontoInterece (Node* node);
 	void removePontoInterece (Node* node);
-	void solution ();
+	void solution (Node* pontoInicial);
 	double dijkstra (Node* init, Node* dest);
 	std::vector<Node*> getCaminho(Node* init, Node* dest);
 	bool pesoMelhor (Node* nodeCandidato, Node* nodeVizinho, double peso);
 	void inicializacaoDijkstra(Node* pontoInicial);
+	void iluminaSolucaoMapa();
 	void exit();
 };
 

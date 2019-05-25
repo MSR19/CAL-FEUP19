@@ -19,6 +19,7 @@ private:
 		int id;
 		Tipo tipo;
 		float x, y;
+		double peso;
 		std::vector<Estrada> estradas;
 		bool visited;
 
@@ -35,7 +36,9 @@ public:
 		float getX();
 		float getY();
 		bool isVisited();
-		void setVisited();
+		void setVisited(bool visited);
+		double getPeso();
+		void setPeso(double peso);
 };
 
 

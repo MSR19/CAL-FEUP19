@@ -40,8 +40,14 @@ bool Node::isVisited() {
 	return this->visited;
 }
 
-void Node::setVisited() {
-	this->visited = true;
+void Node::setVisited(bool visited) {
+	this->visited = visited;
 }
 
+double Node::getPeso() {
+	return this->peso;
+}
 
+void Node::setPeso(double peso) {
+	this->peso = peso;
+}

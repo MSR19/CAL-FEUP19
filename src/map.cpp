@@ -150,56 +150,33 @@ void Map::solution () {
 }
 
 double Map::dijkstra (Node* init, Node* dest) {
-	/*
-	Node* pontoInicial = initSingleSource(origin);
-			MutablePriorityQueue<Vertice> q;
-			q.insert(s);
-			while ( ! q.empty() ) {
-				auto v = q.extractMin();
-				for (auto e : v->adj) {
-					auto oldDist = e.dest->dist;
-					if ( pesoMelhor(v, e.dest, e.weight)) {
-						if (oldDist == INF)
-							q.insert(e.dest);
-						else
-							q.decreaseKey(e.dest);
-					}
-				}
-			}
-
-
-
-	void Grafo::dijkstraShortestPath(const T &origin) {
-		auto s = initSingleSource(origin);
-		MutablePriorityQueue<Vertice> q;
-		q.insert(s);
-		while ( ! q.empty() ) {
-			auto v = q.extractMin();
-			for (auto e : v->adj) {
-				auto oldDist = e.dest->dist;
-				if ( pesoMelhor(v, e.dest, e.weight)) {
-					if (oldDist == INF)
-						q.insert(e.dest);
-					else
-						q.decreaseKey(e.dest);
-				}
+	this->inicializacaoDijkstra(init);
+	MutablePriorityQueue<Node> q;
+	q.insert(init);
+	while ( ! q.empty() ) {
+		Node* v = q.extractMin();
+		for (Estrada e : v->getEstradas()) {
+			double arrestaPeso = e.getPeso();
+			if ( pesoMelhor(v, e.getDestino(), e.getPeso())) {
+				if (arrestaPeso == INF)
+					q.insert(e.dest);
+				else
+					q.decreaseKey(e.dest);
 			}
 		}
 	}
 
+	return dest->getPeso();
+}
 
-
-	vector<T> Grafo::getPath(const T &origin, const T &dest) const {
-		vector<T> res;
-		auto v = findVertex(dest);
-		if (v == nullptr || v->dist == INF) // missing or disconnected
-			return res;
-		for ( ; v != nullptr; v = v->path)
-			res.push_back(v->info);
-		reverse(res.begin(), res.end());
-		return res;
-	}
-	*/
+std::vector<Node*> Map::getCaminho(Node* init, Node* dest) {
+	vector<Node*> solucaoTemporaria;
+	if (dest->getPeso() == INF)
+		return solucaoTemporaria;
+	for ( ; dest != nullptr; dest = dest->getCaminho())
+		solucaoTemporaria.push_back(dest);
+	reverse(solucaoTemporaria.begin(), solucaoTemporaria.end());
+	return solucaoTemporaria;
 }
 
 bool Map::pesoMelhor (Node* nodeVisitado, Node* nodeVizinho, double pesoArresta) {

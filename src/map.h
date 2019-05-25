@@ -10,6 +10,7 @@
 #include <queue>
 #include <list>
 #include <cmath>
+#include <algorithm>
 #include "MutablePriorityQueue.h"
 
 #include "Estrada.h"
@@ -38,6 +39,7 @@ public:
 	void removePontoInterece (Node* node);
 	void solution ();
 	double dijkstra (Node* init, Node* dest);
+	std::vector<Node*> getCaminho(Node* init, Node* dest);
 	bool pesoMelhor (Node* nodeCandidato, Node* nodeVizinho, double peso);
 	void inicializacaoDijkstra(Node* pontoInicial);
 	void exit();

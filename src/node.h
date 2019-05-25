@@ -30,6 +30,8 @@ private:
 public:
 		Node(float x, float y, int id, Tipo tipo);
 
+		bool operator<(Node& vertex) const; // // required by MutablePriorityQueue
+
 		int queueIndex = 0;
 
 		std::vector<Estrada> getEstradas();
@@ -41,7 +43,7 @@ public:
 		float getY();
 		bool isVisited();
 		void setVisited(bool visited);
-		double getPeso();
+		double getPeso() const;
 		void setPeso(double peso);
 		Node* getCaminho();
 		void setCaminho(Node* caminho);

@@ -44,7 +44,7 @@ void Node::setVisited(bool visited) {
 	this->visited = visited;
 }
 
-double Node::getPeso() {
+double Node::getPeso() const{
 	return this->peso;
 }
 
@@ -58,4 +58,8 @@ Node* Node::getCaminho() {
 
 void Node::setCaminho(Node* caminho) {
 	this->caminho = caminho;
+}
+
+bool Node::operator<(Node& vertex) const {
+	return this->getPeso() < vertex.getPeso();
 }

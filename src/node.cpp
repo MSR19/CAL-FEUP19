@@ -59,11 +59,3 @@ Node* Node::getCaminho() {
 void Node::setCaminho(Node* caminho) {
 	this->caminho = caminho;
 }
-
-int Node::getQueueIndex() {
-	return this->queueIndex;
-}
-void Node::setQueueIndex(int index) {
-	this->queueIndex = index;
-}
-

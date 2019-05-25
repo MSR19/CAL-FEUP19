@@ -147,12 +147,14 @@ void Map::removePontoInterece (Node* node) {
 
 void Map::solution (Node* pontoInicial) {
 	std::vector<Node*> solucaoTemporaria = {};
+	Node* final = nullptr;
 	double pesoMenor = INF;
 
 	for (unsigned int i = 0; i != this->interece.size(); i++) {
 		if (!this->interece[i]->isVisited()) {
 			if (pesoMenor > this->dijkstra(pontoInicial, interece[i])){
 				solucaoTemporaria = this->getCaminho(pontoInicial, interece[i]);
+				final = interece[i];
 			}
 		}
 	}
@@ -161,7 +163,7 @@ void Map::solution (Node* pontoInicial) {
 			this->solucao.insert(this->solucao.end(), solucaoTemporaria.begin()+1, solucaoTemporaria.end());
 		else
 			this->solucao = solucaoTemporaria;
-		this->solucao(solucaoTemporaria.end());
+		this->solution(final);
 	}
 	else {
 		this->iluminaSolucaoMapa();
@@ -178,9 +180,9 @@ double Map::dijkstra (Node* init, Node* dest) {
 			double arrestaPeso = e.getPeso();
 			if ( pesoMelhor(v, e.getDestino(), e.getPeso())) {
 				if (arrestaPeso == INF)
-					q.insert(e.dest);
+					q.insert(e.getDestino());
 				else
-					q.decreaseKey(e.dest);
+					q.decreaseKey(e.getDestino());
 			}
 		}
 	}

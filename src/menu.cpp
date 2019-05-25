@@ -212,7 +212,37 @@ void Menu::chageNode(int nodeVectorPos) {
 }
 
 void Menu::showSolution() {
-	this->map->solution();
+	//Incerir um ponto inial
+	std::vector<Node*> nodes = this->map->getPontos();
+	for (unsigned int i = 0; i != nodes.size(); i++) {
+		cout << i << ": (Id)" << nodes[i]->getId() << " , (X)" << nodes[i]->getX() << " , (Y)" << nodes[i]->getY() << " , (Type)";
+		switch (nodes[i]->getTipo()) {
+		case NONE:
+			cout << "NONE" << endl;
+			break;
+
+		case BANCOS:
+			cout << "BANCOS" << endl;
+			break;
+
+		case MUSEUS:
+			cout << "MUSEUS" << endl;
+			break;
+
+		case CORREIO_URGENTE:
+			cout << "CORREIO URGENTE" << endl;
+			break;
+
+		case JUNTAS:
+			cout << "JUNTAS" << endl;
+			break;
+		}
+
+	}
+	cout << endl << "Chose the node that you want to alter (use the first number): ";
+	int node = this->intHandler(nodes.size());
+
+	this->map->solution(this->map->getPontos()[node]);
 	std::vector<Node*> nodeSolucao = this->map->getSolucao();
 	cout << "The solution is the following" << endl;
 	for (unsigned int i = 0; i != nodeSolucao.size(); i++) {

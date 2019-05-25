@@ -26,9 +26,11 @@ private:
 		void addEstrada(Node *dest, double peso);
 		bool removeEdgeTo(Node *dest);
 		Node* caminho = NULL;
-		int queueIndex = 0; // required by MutablePriorityQueue
+
 public:
 		Node(float x, float y, int id, Tipo tipo);
+
+		int queueIndex = 0;
 
 		std::vector<Estrada> getEstradas();
 		void addEstrada (Estrada estrada);
@@ -43,8 +45,6 @@ public:
 		void setPeso(double peso);
 		Node* getCaminho();
 		void setCaminho(Node* caminho);
-		int getQueueIndex();
-		void setQueueIndex(int index);
 };
 
 

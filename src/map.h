@@ -6,10 +6,17 @@
 #include <iostream>
 #include <fstream>
 
+#include <limits>
+#include <queue>
+#include <list>
+#include <cmath>
+#include "MutablePriorityQueue.h"
+
 #include "Estrada.h"
 #include "node.h"
 #include "graphviewer.h"
 
+#define INF std::numeric_limits<double>::max()
 
 class Map {
 private:
@@ -30,7 +37,9 @@ public:
 	void addPontoInterece (Node* node);
 	void removePontoInterece (Node* node);
 	void solution ();
-	void dijkstra (Node init, Node dest);
+	double dijkstra (Node* init, Node* dest);
+	bool pesoMelhor (Node* nodeCandidato, Node* nodeVizinho, double peso);
+	void inicializacaoDijkstra(Node* pontoInicial);
 	void exit();
 };
 

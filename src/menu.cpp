@@ -86,7 +86,6 @@ void Menu::initialMenu() {
 
 			case JUNTAS:
 				cout << "JUNTAS" << endl;
-				this->map->exit();
 				break;
 			}
 
@@ -108,6 +107,7 @@ void Menu::initialMenu() {
 		break;
 	case 4:
 		std::cout << endl << "Thank you for your preference!" << endl;
+		this->map->exit();
 		break;
 	}
 	} while(answer != 4);

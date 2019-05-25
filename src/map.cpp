@@ -149,8 +149,75 @@ void Map::solution () {
 
 }
 
-void Map::dijkstra (Node init, Node dest) {
+double Map::dijkstra (Node* init, Node* dest) {
+	/*
+	Node* pontoInicial = initSingleSource(origin);
+			MutablePriorityQueue<Vertice> q;
+			q.insert(s);
+			while ( ! q.empty() ) {
+				auto v = q.extractMin();
+				for (auto e : v->adj) {
+					auto oldDist = e.dest->dist;
+					if ( pesoMelhor(v, e.dest, e.weight)) {
+						if (oldDist == INF)
+							q.insert(e.dest);
+						else
+							q.decreaseKey(e.dest);
+					}
+				}
+			}
 
+
+
+	void Grafo::dijkstraShortestPath(const T &origin) {
+		auto s = initSingleSource(origin);
+		MutablePriorityQueue<Vertice> q;
+		q.insert(s);
+		while ( ! q.empty() ) {
+			auto v = q.extractMin();
+			for (auto e : v->adj) {
+				auto oldDist = e.dest->dist;
+				if ( pesoMelhor(v, e.dest, e.weight)) {
+					if (oldDist == INF)
+						q.insert(e.dest);
+					else
+						q.decreaseKey(e.dest);
+				}
+			}
+		}
+	}
+
+
+
+	vector<T> Grafo::getPath(const T &origin, const T &dest) const {
+		vector<T> res;
+		auto v = findVertex(dest);
+		if (v == nullptr || v->dist == INF) // missing or disconnected
+			return res;
+		for ( ; v != nullptr; v = v->path)
+			res.push_back(v->info);
+		reverse(res.begin(), res.end());
+		return res;
+	}
+	*/
+}
+
+bool Map::pesoMelhor (Node* nodeVisitado, Node* nodeVizinho, double pesoArresta) {
+	if (nodeVizinho->getPeso() > pesoArresta + nodeVizinho->getPeso()) {
+		nodeVizinho->setPeso(pesoArresta + nodeVizinho->getPeso());
+		nodeVizinho->setCaminho(nodeVisitado);
+		return true;
+	}
+	else
+		return false;
+}
+
+void Map::inicializacaoDijkstra(Node* pontoInicial) {
+	for (Node* node : this->pontos) {
+		node->setCaminho(nullptr);
+		node->setPeso(INF);
+	}
+	pontoInicial->setPeso(0);
 }
 
 void Map::exit() {

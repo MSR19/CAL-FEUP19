@@ -25,6 +25,8 @@ private:
 
 		void addEstrada(Node *dest, double peso);
 		bool removeEdgeTo(Node *dest);
+		Node* caminho = NULL;
+		int queueIndex = 0; // required by MutablePriorityQueue
 public:
 		Node(float x, float y, int id, Tipo tipo);
 
@@ -39,6 +41,10 @@ public:
 		void setVisited(bool visited);
 		double getPeso();
 		void setPeso(double peso);
+		Node* getCaminho();
+		void setCaminho(Node* caminho);
+		int getQueueIndex();
+		void setQueueIndex(int index);
 };
 
 

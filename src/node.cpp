@@ -51,3 +51,19 @@ double Node::getPeso() {
 void Node::setPeso(double peso) {
 	this->peso = peso;
 }
+
+Node* Node::getCaminho() {
+	return this->caminho;
+}
+
+void Node::setCaminho(Node* caminho) {
+	this->caminho = caminho;
+}
+
+int Node::getQueueIndex() {
+	return this->queueIndex;
+}
+void Node::setQueueIndex(int index) {
+	this->queueIndex = index;
+}
+

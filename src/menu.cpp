@@ -51,11 +51,12 @@ void Menu::initialMenu() {
 	std::cout << "What do you wish to do?" << endl;
 	std::cout << "1: Load the map" << endl;
 	std::cout << "2: Change the type of nodes" << endl;
-	std::cout << "3: View the shortest way" << endl;
-	std::cout << "4: quit" << endl << endl;
+	std::cout << "3: View especial nodes" << endl;
+	std::cout << "4: View the shortest way" << endl;
+	std::cout << "5: quit" << endl << endl;
 
 	std::cout << "Chose the option you want: ";
-	answer = this->intHandler(4);
+	answer = this->intHandler(5);
 
 	switch (answer) {
 	case 1:
@@ -66,7 +67,7 @@ void Menu::initialMenu() {
 		std::vector<Node*> nodes = this->map->getPontos();
 		cout << "The nodes are the following" << endl;
 		for (unsigned int i = 0; i != nodes.size(); i++) {
-			cout << i << ": (Id)" << nodes[i]->getId() << " , (X)" << nodes[i]->getX() << " , (Y)" << nodes[i]->getY() << " , (Type)";
+			cout << i+1 << ": (Id)" << nodes[i]->getId() << " , (X)" << nodes[i]->getX() << " , (Y)" << nodes[i]->getY() << " , (Type)";
 			switch (nodes[i]->getTipo()) {
 			case NONE:
 				cout << "NONE" << endl;
@@ -92,25 +93,62 @@ void Menu::initialMenu() {
 		}
 		cout << endl << "Chose the node that you want to alter (use the first number): ";
 		int node = this->intHandler(nodes.size());
-		this->chageNode(node);
+		this->chageNode(node-1);
 		}
 		else {
 			std::cout << endl << "you need to load a map first!" << endl;
 		}
 		break;
 	case 3:
+		if (this->map != NULL) {
+		std::vector<Node*> nodes = this->map->getInterece();
+		cout << "The nodes are the following" << endl;
+		for (unsigned int i = 0; i != nodes.size(); i++) {
+			cout << i+1 << ": (Id)" << nodes[i]->getId() << " , (X)" << nodes[i]->getX() << " , (Y)" << nodes[i]->getY() << " , (Type)";
+			switch (nodes[i]->getTipo()) {
+			case NONE:
+				cout << "NONE" << endl;
+				break;
+
+			case BANCOS:
+				cout << "BANCOS" << endl;
+				break;
+
+			case MUSEUS:
+				cout << "MUSEUS" << endl;
+				break;
+
+			case CORREIO_URGENTE:
+				cout << "CORREIO URGENTE" << endl;
+				break;
+
+			case JUNTAS:
+				cout << "JUNTAS" << endl;
+				break;
+			}
+
+		}
+		cout << endl << "Chose the node that you want to alter (use the first number): ";
+		int node = this->intHandler(nodes.size());
+		this->chageNode(node-1);
+		}
+		else {
+			std::cout << endl << "you need to load a map first!" << endl;
+		}
+		break;
+	case 4:
 		if (this->map != NULL)
 			this->showSolution();
 		else {
 			std::cout << endl << "you need to load a map first!" << endl;
 		}
 		break;
-	case 4:
+	case 5:
 		std::cout << endl << "Thank you for your preference!" << endl;
 		this->map->exit();
 		break;
 	}
-	} while(answer != 4);
+	} while(answer != 5);
 }
 
 void Menu::loadMap() {
@@ -212,7 +250,6 @@ void Menu::chageNode(int nodeVectorPos) {
 }
 
 void Menu::showSolution() {
-	//Incerir um ponto inial
 	std::vector<Node*> nodes = this->map->getPontos();
 	for (unsigned int i = 0; i != nodes.size(); i++) {
 		cout << i << ": (Id)" << nodes[i]->getId() << " , (X)" << nodes[i]->getX() << " , (Y)" << nodes[i]->getY() << " , (Type)";

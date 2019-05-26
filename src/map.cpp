@@ -52,8 +52,7 @@ Map::Map (string cidade) {
 	gv->defineVertexColor("blue");
 	gv->defineEdgeColor("green");
 
-	gv->addNode(5000,0,0);
-	this->pontos.push_back(new Node(5000, 0, 0, NONE));
+
 
 	string edges = "/T08_edges_";
 	string nodes = "/T08_nodes_X_Y_";

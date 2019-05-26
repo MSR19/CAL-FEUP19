@@ -160,8 +160,6 @@ void Map::solution (Node* pontoInicial) {
 	if (solucaoTemporaria.size() > 0) {
 		if (this->solucao.size() > 1)
 			this->solucao.insert(this->solucao.end(), solucaoTemporaria.begin()+1, solucaoTemporaria.end());
-		else
-			this->solucao = solucaoTemporaria;
 		this->solution(final);
 	}
 	else {
@@ -176,8 +174,9 @@ double Map::dijkstra (Node* init, Node* dest) {
 	while ( ! q.empty() ) {
 		Node* v = q.extractMin();
 		for (Estrada e : v->getEstradas()) {
-			double arrestaPeso = e.getPeso();
-			if ( pesoMelhor(v, e.getDestino(), e.getPeso())) {
+			double arrestaPeso = e.getDestino()->getPeso();
+			if ( pesoMelhor(v, e.getDestino(), e.getPeso()))
+			{
 				if (arrestaPeso == INF)
 					q.insert(e.getDestino());
 				else
@@ -185,7 +184,6 @@ double Map::dijkstra (Node* init, Node* dest) {
 			}
 		}
 	}
-
 	return dest->getPeso();
 }
 
@@ -200,8 +198,8 @@ std::vector<Node*> Map::getCaminho(Node* init, Node* dest) {
 }
 
 bool Map::pesoMelhor (Node* nodeVisitado, Node* nodeVizinho, double pesoArresta) {
-	if (nodeVizinho->getPeso() > pesoArresta + nodeVizinho->getPeso()) {
-		nodeVizinho->setPeso(pesoArresta + nodeVizinho->getPeso());
+	if (nodeVizinho->getPeso() > pesoArresta + nodeVisitado->getPeso()) {
+		nodeVizinho->setPeso(pesoArresta + nodeVisitado->getPeso());
 		nodeVizinho->setCaminho(nodeVisitado);
 		return true;
 	}

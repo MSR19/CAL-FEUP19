@@ -8,6 +8,8 @@ class Menu {
 private:
 	Map* map;
 
+	void changeNodesInVector(std::vector<Node* > nodes);
+	void showNodes(std::vector<Node* > nodes);
 	void showTipo(Node* node);
 	string srtingHandler ();
 	int intHandler (int max);

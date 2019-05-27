@@ -53,46 +53,28 @@ void Menu::initialMenu() {
 	std::cout << "2: Change the type of nodes" << endl;
 	std::cout << "3: View especial nodes" << endl;
 	std::cout << "4: View the shortest way" << endl;
-	std::cout << "5: quit" << endl << endl;
+	std::cout << "5: Add new car to the list" << endl;
+	std::cout << "6: View the shortest way to the cars" << endl;
+	std::cout << "7: quit" << endl << endl;
 
 	std::cout << "Chose the option you want: ";
-	answer = this->intHandler(5);
+	answer = this->intHandler(7);
 
 	switch (answer) {
 	case 1:
 		this->loadMap();
 		break;
 	case 2:
-		if (this->map != NULL) {
-		std::vector<Node*> nodes = this->map->getPontos();
-		cout << "The nodes are the following" << endl;
-		for (unsigned int i = 0; i != nodes.size(); i++) {
-			cout << i+1 << ": (Id)" << nodes[i]->getId() << " , (X)" << nodes[i]->getX() << " , (Y)" << nodes[i]->getY() << " , (Type)";
-			this->showTipo (nodes[i]);
-		}
-		cout << endl << "Chose the node that you want to alter (use the first number): ";
-		int node = this->intHandler(nodes.size());
-		this->chageNode(node-1);
-		}
-		else {
+		if (this->map != NULL)
+			this->changeNodesInVector(this->map->getPontos());
+		else
 			std::cout << endl << "you need to load a map first!" << endl;
-		}
 		break;
 	case 3:
-		if (this->map != NULL) {
-		std::vector<Node*> nodes = this->map->getInterece();
-		cout << "The nodes are the following" << endl;
-		for (unsigned int i = 0; i != nodes.size(); i++) {
-			cout << i+1 << ": (Id)" << nodes[i]->getId() << " , (X)" << nodes[i]->getX() << " , (Y)" << nodes[i]->getY() << " , (Type)";
-			this->showTipo(nodes[i]);
-		}
-		cout << endl << "Chose the node that you want to alter (use the first number): ";
-		int node = this->intHandler(nodes.size());
-		this->chageNode(node-1);
-		}
-		else {
+		if (this->map != NULL)
+			this->changeNodesInVector(this->map->getInterece());
+		else
 			std::cout << endl << "you need to load a map first!" << endl;
-		}
 		break;
 	case 4:
 		if (this->map != NULL)
@@ -102,11 +84,22 @@ void Menu::initialMenu() {
 		}
 		break;
 	case 5:
+		this->addCaro();
+		break;
+	case 6:
+		if (this->map != NULL)
+			this->showSolution2();
+		else {
+			std::cout << endl << "you need to load a map first!" << endl;
+		}
+		break;
+
+	case 7:
 		std::cout << endl << "Thank you for your preference!" << endl;
 		this->map->exit();
 		break;
 	}
-	} while(answer != 5);
+	} while(answer != 7);
 }
 
 void Menu::loadMap() {
@@ -136,12 +129,20 @@ void Menu::loadMap() {
 	}
 }
 
+void Menu::changeNodesInVector(std::vector<Node* > nodes) {
+	std::cout << "The nodes are the following" << endl;
+	this->showNodes(nodes);
+	std::cout << endl << "Chose the node that you want to alter (use the first number): ";
+	int node = this->intHandler(nodes.size());
+	this->chageNode(node-1);
+}
+
 void Menu::chageNode(int nodeVectorPos) {
 	std::vector<Node*> nodes = this->map->getPontos();
-	std::cout << "What do you want to change?" << endl;
-	std::cout << "Node now: (X)" << nodes[nodeVectorPos]->getX() << ", (Y)" << nodes[nodeVectorPos]->getY() << ", (Type)";
-	this->showTipo (nodes[nodeVectorPos]);
+	std::cout << "(Id)" << nodes[nodeVectorPos]->getId() << ", (X)" << nodes[nodeVectorPos]->getX() << ", (Y)" << nodes[nodeVectorPos]->getY() << " ,(Type) ";
+	this->showTipo(nodes[nodeVectorPos]);
 
+	std::cout << endl << "Chose what to alter:" << endl;
 	std::cout << "1: change type" << endl;
 	std::cout << "2: bo back" << endl;
 
@@ -189,25 +190,30 @@ void Menu::chageNode(int nodeVectorPos) {
 }
 
 void Menu::showSolution() {
+	//Cleans the previus solution
 	std::vector<Node*> novaSolucao = {};
 	this->map->getSolucao() = novaSolucao;
+
+	//Ask for the initial point and start the alguritm
 	std::vector<Node*> nodes = this->map->getPontos();
+	this->showNodes(nodes);
+	cout << endl << "Chose the node that you want to start (use the first number): ";
+	int node = this->intHandler(nodes.size());
+	this->map->solution(this->map->getPontos()[node-1]);
+	std::vector<Node*> nodeSolucao = this->map->getSolucao();
+
+	//Shows the solution
+	cout << "The solution is the following" << endl;
+	this->showNodes(nodeSolucao);
+	cout << endl << "Write anything to go back to main menu: ";
+	string cenas = this->srtingHandler();
+}
+
+void Menu::showNodes(std::vector<Node* > nodes) {
 	for (unsigned int i = 0; i != nodes.size(); i++) {
 		cout << i+1 << ": (Id)" << nodes[i]->getId() << " , (X)" << nodes[i]->getX() << " , (Y)" << nodes[i]->getY() << " , (Type)";
 		this->showTipo(nodes[i]);
 	}
-	cout << endl << "Chose the node that you want to alter (use the first number): ";
-	int node = this->intHandler(nodes.size());
-
-	this->map->solution(this->map->getPontos()[node-1]);
-	std::vector<Node*> nodeSolucao = this->map->getSolucao();
-	cout << "The solution is the following" << endl;
-	for (unsigned int i = 0; i != nodeSolucao.size(); i++) {
-		cout << i+1 << ": (Id)" << nodeSolucao[i]->getId() << " , (X)" << nodeSolucao[i]->getX() << " , (Y)" << nodeSolucao[i]->getY() << " , (Type)";
-		this->showTipo(nodeSolucao[i]);
-	}
-	cout << endl << "Write anything to go back to main menu: ";
-	string cenas = this->srtingHandler();
 }
 
 void Menu::showTipo(Node* node) {
@@ -234,10 +240,10 @@ void Menu::showTipo(Node* node) {
 	}
 }
 
-
 void Menu::addCaro() {
 
 }
+
 void Menu::showSolution2() {
 
 }

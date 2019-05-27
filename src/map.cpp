@@ -57,25 +57,6 @@ Map::Map (string cidade) {
 	gv->defineVertexColor("blue");
 	gv->defineEdgeColor("green");
 
-	/*
-	gv->addNode(10,0,0);
-	gv->addNode(2, 1, 1);
-	gv->addEdge(100000, 10, 2, false);
-
-	this->pontos.push_back(new Node(0,0,10, NONE));
-	Node* cenas = new Node(1,1,2,BANCOS);
-	this->pontos.push_back(cenas);
-	this->interece.push_back(cenas);
-	this->addEstrada(4, 2, 10);
-
-	for (int j = 0; j != pontos.size(); j++) {
-		for (int i = 0; i != pontos[j]->getEstradas().size(); i++) {
-			cout << "Existe uma estrada e o seu peso é " << pontos[i]->getEstradas()[i].getPeso() << endl;
-		}
-	}
-	*/
-
-
 	cout <<  "è";
 
 	string edges = "/T08_edges_";
@@ -177,28 +158,17 @@ void Map::solution (Node* pontoInicial) {
 	for (unsigned int i = 0; i != this->interece.size(); i++) {
 		if (!this->interece[i]->isVisited()) {
 			if (pesoMenor > this->dijkstra(pontoInicial, interece[i])){
-				//cout << "deu crh" << endl;
 				solucaoTemporaria = this->getCaminho(pontoInicial, interece[i]);
 				final = interece[i];
 			}
-			/*
-			else {
-				cout << "WTF?" << endl;
-			}
-			*/
 		}
 	}
 
-	/*
-	for(unsigned int i = 0; i != solucaoTemporaria.size(); i++) {
-		cout << solucaoTemporaria[i]->getId() << endl;
-	}
-
-	cout << "O dkistra correu mas deu merda";
-	*/
+	final->setVisited(true);
 
 	if (this->solucao.size() > 0 && solucaoTemporaria.size() > 0) {
 		if (this->solucao.size() > 1)
+			cout << "FALHA AQUUI CRHhhHHHHHHHHH!" << endl;
 			this->solucao.insert(this->solucao.end(), solucaoTemporaria.begin()+1, solucaoTemporaria.end());
 		//this->solution(final);
 	}
@@ -247,21 +217,13 @@ std::vector<Node*> Map::getCaminho(Node* init, Node* dest) {
 
 bool Map::pesoMelhor (Node* nodeVisitado, Node* nodeVizinho, double pesoArresta) {
 
-	/*
-	cout << "Peso do ponto onde estou " << nodeVisitado->getPeso() << endl
-		 << "Peso do ponto que estou a ver " << nodeVizinho->getPeso() << endl
-		 << "Peso da arresta a liga los" << pesoArresta << endl;
-	*/
-
 	if (nodeVizinho->getPeso() > pesoArresta + nodeVisitado->getPeso()) {
 		nodeVizinho->setPeso(pesoArresta + nodeVisitado->getPeso());
 		nodeVizinho->setCaminho(nodeVisitado);
-
-		//cout << "O gajo era gordo e novo peso e " << nodeVizinho->getPeso() << " e o seu anteceçor e o " << nodeVizinho->getCaminho()<<endl;
 		return true;
 	}
 	else{
-		//cout << "O gajo e magrinho" << endl;
+
 		return false;
 	}
 }
@@ -274,14 +236,6 @@ void Map::inicializacaoDijkstra(Node* pontoInicial) {
 
 	pontoInicial->setPeso(0);
 
-	/*
-	for (Node* node : this->pontos) {
-		cout << "O peso dos pontos " << node->getPeso() << endl;
-		for (Estrada estrada: node->getEstradas()) {
-			cout << "A estrada esta a ir para " << estrada.getDestino()->getPeso() << endl;
-		}
-	}
-	*/
 }
 
 void Map::iluminaSolucaoMapa() {

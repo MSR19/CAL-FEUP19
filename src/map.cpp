@@ -151,7 +151,6 @@ void Map::removePontoInterece (Node* node) {
 
 void Map::solution (Node* pontoInicial) {
 	std::vector<Node*> solucaoTemporaria = {};
-	this->solucao = solucaoTemporaria;
 	Node* final = nullptr;
 	double pesoMenor = INF;
 
@@ -163,22 +162,22 @@ void Map::solution (Node* pontoInicial) {
 			}
 		}
 	}
+	if (final != nullptr) {
+		final->setVisited(true);
 
-	final->setVisited(true);
-
-	if (this->solucao.size() > 0 && solucaoTemporaria.size() > 0) {
-		if (this->solucao.size() > 1)
-			cout << "FALHA AQUUI CRHhhHHHHHHHHH!" << endl;
-			this->solucao.insert(this->solucao.end(), solucaoTemporaria.begin()+1, solucaoTemporaria.end());
-		//this->solution(final);
-	}
-	else if (this->solucao.size() == 0){
-		this->solucao = solucaoTemporaria;
-		this->iluminaSolucaoMapa();
-		//this->solution(final);
+		if (this->solucao.size() > 0 && solucaoTemporaria.size() > 0) {
+			if (this->solucao.size() > 1)
+				cout << "FALHA AQUUI CRHhhHHHHHHHHH!" << endl;
+				this->solucao.insert(this->solucao.end(), solucaoTemporaria.begin()+1, solucaoTemporaria.end());
+				this->solution(final);
+		}
+		else if (this->solucao.size() == 0){
+			this->solucao = solucaoTemporaria;
+			this->solution(final);
+		}
 	}
 	else {
-
+		this->iluminaSolucaoMapa();
 	}
 
 

@@ -250,6 +250,8 @@ void Menu::chageNode(int nodeVectorPos) {
 }
 
 void Menu::showSolution() {
+	std::vector<Node*> novaSolucao = {};
+	this->map->getSolucao() = novaSolucao;
 	std::vector<Node*> nodes = this->map->getPontos();
 	for (unsigned int i = 0; i != nodes.size(); i++) {
 		cout << i+1 << ": (Id)" << nodes[i]->getId() << " , (X)" << nodes[i]->getX() << " , (Y)" << nodes[i]->getY() << " , (Type)";

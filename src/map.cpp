@@ -167,7 +167,6 @@ void Map::solution (Node* pontoInicial) {
 
 		if (this->solucao.size() > 0 && solucaoTemporaria.size() > 0) {
 			if (this->solucao.size() > 1)
-				cout << "FALHA AQUUI CRHhhHHHHHHHHH!" << endl;
 				this->solucao.insert(this->solucao.end(), solucaoTemporaria.begin()+1, solucaoTemporaria.end());
 				this->solution(final);
 		}
@@ -245,6 +244,14 @@ void Map::iluminaSolucaoMapa() {
 
 void Map::exit() {
 	this->graphviewer->closeWindow();
+}
+
+void Map::addCar(VETV* carro) {
+	this->carros.push_back(carro);
+}
+
+void Map::solution2() {
+	//cenas que vao ser feitas
 }
 
 

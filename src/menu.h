@@ -8,6 +8,7 @@ class Menu {
 private:
 	Map* map;
 
+	void showTipo(Node* node);
 	string srtingHandler ();
 	int intHandler (int max);
 public:
@@ -16,6 +17,8 @@ public:
 	void loadMap();
 	void chageNode(int nodeVectorPos);
 	void showSolution();
+	void addCaro();
+	void showSolution2();
 };
 
 #endif

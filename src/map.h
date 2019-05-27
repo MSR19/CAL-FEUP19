@@ -16,6 +16,7 @@
 #include "Estrada.h"
 #include "node.h"
 #include "graphviewer.h"
+#include "VETV.h"
 
 #define INF std::numeric_limits<double>::max()
 
@@ -26,6 +27,7 @@ private:
 	std::vector<Node*> interece;
 	std::vector<Estrada*> estradas;
 	std::vector<Node*> solucao;
+	std::vector<VETV* > carros;
 
 	void addNode (int id, float x, float y, Tipo tipo);
 	bool addEstrada (int id, int nodeIdInicio, int nodeIdDestino);
@@ -44,6 +46,10 @@ public:
 	void inicializacaoDijkstra(Node* pontoInicial);
 	void iluminaSolucaoMapa();
 	void exit();
+
+	//solution2
+	void addCar(VETV* carro);
+	void solution2();
 };
 
 

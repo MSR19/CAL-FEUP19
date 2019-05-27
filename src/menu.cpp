@@ -68,28 +68,7 @@ void Menu::initialMenu() {
 		cout << "The nodes are the following" << endl;
 		for (unsigned int i = 0; i != nodes.size(); i++) {
 			cout << i+1 << ": (Id)" << nodes[i]->getId() << " , (X)" << nodes[i]->getX() << " , (Y)" << nodes[i]->getY() << " , (Type)";
-			switch (nodes[i]->getTipo()) {
-			case NONE:
-				cout << "NONE" << endl;
-				break;
-
-			case BANCOS:
-				cout << "BANCOS" << endl;
-				break;
-
-			case MUSEUS:
-				cout << "MUSEUS" << endl;
-				break;
-
-			case CORREIO_URGENTE:
-				cout << "CORREIO URGENTE" << endl;
-				break;
-
-			case JUNTAS:
-				cout << "JUNTAS" << endl;
-				break;
-			}
-
+			this->showTipo (nodes[i]);
 		}
 		cout << endl << "Chose the node that you want to alter (use the first number): ";
 		int node = this->intHandler(nodes.size());
@@ -105,28 +84,7 @@ void Menu::initialMenu() {
 		cout << "The nodes are the following" << endl;
 		for (unsigned int i = 0; i != nodes.size(); i++) {
 			cout << i+1 << ": (Id)" << nodes[i]->getId() << " , (X)" << nodes[i]->getX() << " , (Y)" << nodes[i]->getY() << " , (Type)";
-			switch (nodes[i]->getTipo()) {
-			case NONE:
-				cout << "NONE" << endl;
-				break;
-
-			case BANCOS:
-				cout << "BANCOS" << endl;
-				break;
-
-			case MUSEUS:
-				cout << "MUSEUS" << endl;
-				break;
-
-			case CORREIO_URGENTE:
-				cout << "CORREIO URGENTE" << endl;
-				break;
-
-			case JUNTAS:
-				cout << "JUNTAS" << endl;
-				break;
-			}
-
+			this->showTipo(nodes[i]);
 		}
 		cout << endl << "Chose the node that you want to alter (use the first number): ";
 		int node = this->intHandler(nodes.size());
@@ -159,7 +117,7 @@ void Menu::loadMap() {
 		std::cout << "3: Coimbra" << endl;
 		std::cout << "4: Ermensinde" << endl;
 		std::cout << "5: Fafe" << endl;
-		std::cout << "6: Gondumar" << endl;
+		std::cout << "6: Gondomar" << endl;
 		std::cout << "7: Lisboa" << endl;
 		std::cout << "8: Maia" << endl;
 		std::cout << "9: Porto" << endl;
@@ -169,7 +127,7 @@ void Menu::loadMap() {
 		int anwer1 = this->intHandler(10);
 
 		//Initializes the map to the corresponding city
-		std::vector<string> cidades = {"","Aveiro","Braga","Coimbra","Ermesinde","Fafe","Gondumar","Lisboa", "Maia", "Porto", "Viseu"};
+		std::vector<string> cidades = {"","Aveiro","Braga","Coimbra","Ermesinde","Fafe","Gondomar","Lisboa", "Maia", "Porto", "Viseu"};
 		this->map = new Map(cidades[anwer1]);
 
 	}
@@ -182,27 +140,8 @@ void Menu::chageNode(int nodeVectorPos) {
 	std::vector<Node*> nodes = this->map->getPontos();
 	std::cout << "What do you want to change?" << endl;
 	std::cout << "Node now: (X)" << nodes[nodeVectorPos]->getX() << ", (Y)" << nodes[nodeVectorPos]->getY() << ", (Type)";
-	switch (nodes[nodeVectorPos]->getTipo()) {
-		case NONE:
-			cout << "NONE" << endl;
-			break;
+	this->showTipo (nodes[nodeVectorPos]);
 
-		case BANCOS:
-			cout << "BANCOS" << endl;
-			break;
-
-		case MUSEUS:
-			cout << "MUSEUS" << endl;
-			break;
-
-		case CORREIO_URGENTE:
-			cout << "CORREIO URGENTE" << endl;
-			break;
-
-		case JUNTAS:
-			cout << "JUNTAS" << endl;
-			break;
-	}
 	std::cout << "1: change type" << endl;
 	std::cout << "2: bo back" << endl;
 
@@ -255,7 +194,24 @@ void Menu::showSolution() {
 	std::vector<Node*> nodes = this->map->getPontos();
 	for (unsigned int i = 0; i != nodes.size(); i++) {
 		cout << i+1 << ": (Id)" << nodes[i]->getId() << " , (X)" << nodes[i]->getX() << " , (Y)" << nodes[i]->getY() << " , (Type)";
-		switch (nodes[i]->getTipo()) {
+		this->showTipo(nodes[i]);
+	}
+	cout << endl << "Chose the node that you want to alter (use the first number): ";
+	int node = this->intHandler(nodes.size());
+
+	this->map->solution(this->map->getPontos()[node-1]);
+	std::vector<Node*> nodeSolucao = this->map->getSolucao();
+	cout << "The solution is the following" << endl;
+	for (unsigned int i = 0; i != nodeSolucao.size(); i++) {
+		cout << i+1 << ": (Id)" << nodeSolucao[i]->getId() << " , (X)" << nodeSolucao[i]->getX() << " , (Y)" << nodeSolucao[i]->getY() << " , (Type)";
+		this->showTipo(nodeSolucao[i]);
+	}
+	cout << endl << "Write anything to go back to main menu: ";
+	string cenas = this->srtingHandler();
+}
+
+void Menu::showTipo(Node* node) {
+	switch (node->getTipo()) {
 		case NONE:
 			cout << "NONE" << endl;
 			break;
@@ -275,40 +231,17 @@ void Menu::showSolution() {
 		case JUNTAS:
 			cout << "JUNTAS" << endl;
 			break;
-		}
-
 	}
-	cout << endl << "Chose the node that you want to alter (use the first number): ";
-	int node = this->intHandler(nodes.size());
-
-	this->map->solution(this->map->getPontos()[node-1]);
-	std::vector<Node*> nodeSolucao = this->map->getSolucao();
-	cout << "The solution is the following" << endl;
-	for (unsigned int i = 0; i != nodeSolucao.size(); i++) {
-		cout << i+1 << ": (Id)" << nodeSolucao[i]->getId() << " , (X)" << nodeSolucao[i]->getX() << " , (Y)" << nodeSolucao[i]->getY() << " , (Type)";
-		switch (nodeSolucao[i]->getTipo()) {
-			case NONE:
-				cout << "NONE" << endl;
-				break;
-
-			case BANCOS:
-				cout << "BANCOS" << endl;
-				break;
-
-			case MUSEUS:
-				cout << "MUSEUS" << endl;
-				break;
-
-			case CORREIO_URGENTE:
-				cout << "CORREIO URGENTE" << endl;
-				break;
-
-			case JUNTAS:
-				cout << "JUNTAS" << endl;
-				break;
-		}
-	}
-	cout << endl << "Write anything to go back to main menu: ";
-	string cenas = this->srtingHandler();
 }
+
+
+void Menu::addCaro() {
+
+}
+void Menu::showSolution2() {
+
+}
+
+
+
 

@@ -84,7 +84,10 @@ void Menu::initialMenu() {
 		}
 		break;
 	case 5:
-		this->addCaro();
+		if (this->map != NULL)
+			this->addCaro();
+		else
+			std::cout << endl << "you need to load a map first!" << endl;
 		break;
 	case 6:
 		if (this->map != NULL)

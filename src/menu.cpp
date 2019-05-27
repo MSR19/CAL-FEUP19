@@ -252,7 +252,7 @@ void Menu::chageNode(int nodeVectorPos) {
 void Menu::showSolution() {
 	std::vector<Node*> nodes = this->map->getPontos();
 	for (unsigned int i = 0; i != nodes.size(); i++) {
-		cout << i << ": (Id)" << nodes[i]->getId() << " , (X)" << nodes[i]->getX() << " , (Y)" << nodes[i]->getY() << " , (Type)";
+		cout << i+1 << ": (Id)" << nodes[i]->getId() << " , (X)" << nodes[i]->getX() << " , (Y)" << nodes[i]->getY() << " , (Type)";
 		switch (nodes[i]->getTipo()) {
 		case NONE:
 			cout << "NONE" << endl;
@@ -279,11 +279,11 @@ void Menu::showSolution() {
 	cout << endl << "Chose the node that you want to alter (use the first number): ";
 	int node = this->intHandler(nodes.size());
 
-	this->map->solution(this->map->getPontos()[node]);
+	this->map->solution(this->map->getPontos()[node-1]);
 	std::vector<Node*> nodeSolucao = this->map->getSolucao();
 	cout << "The solution is the following" << endl;
 	for (unsigned int i = 0; i != nodeSolucao.size(); i++) {
-		cout << i << ": (Id)" << nodeSolucao[i]->getId() << " , (X)" << nodeSolucao[i]->getX() << " , (Y)" << nodeSolucao[i]->getY() << " , (Type)";
+		cout << i+1 << ": (Id)" << nodeSolucao[i]->getId() << " , (X)" << nodeSolucao[i]->getX() << " , (Y)" << nodeSolucao[i]->getY() << " , (Type)";
 		switch (nodeSolucao[i]->getTipo()) {
 			case NONE:
 				cout << "NONE" << endl;

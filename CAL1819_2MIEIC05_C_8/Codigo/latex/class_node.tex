@@ -1,0 +1,196 @@
+\hypertarget{class_node}{}\section{Node Class Reference}
+\label{class_node}\index{Node@{Node}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_node_aaa40669ceede2bdca5ed19df3ef0eb65}{Node}} (float x, float y, int id, Tipo tipo)
+\begin{DoxyCompactList}\small\item\em Constructs the object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_aa2521fef8b2cbf414a8b22a84baa196e}{operator$<$}} (\mbox{\hyperlink{class_node}{Node}} \&vertex) const
+\begin{DoxyCompactList}\small\item\em Operador than less. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_estrada}{Estrada}} $>$ \mbox{\hyperlink{class_node_a8e76b1e655f7e4264fc461c03ad00d56}{get\+Estradas}} ()
+\begin{DoxyCompactList}\small\item\em Gets the roads that leave this \mbox{\hyperlink{class_node}{Node}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_node_a48bb175e508bfc0b5632a6c4d866e454}\label{class_node_a48bb175e508bfc0b5632a6c4d866e454}} 
+void \mbox{\hyperlink{class_node_a48bb175e508bfc0b5632a6c4d866e454}{add\+Estrada}} (\mbox{\hyperlink{class_estrada}{Estrada}} estrada)
+\begin{DoxyCompactList}\small\item\em Function to add a road to the roads. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_node_a3c7b8ccf4dab44216b997c5f63f11d9f}{get\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Gets the id of the \mbox{\hyperlink{class_node}{Node}}. \end{DoxyCompactList}\item 
+Tipo \mbox{\hyperlink{class_node_a6ef1b0b19699e0b03c024121f8d5a340}{get\+Tipo}} ()
+\begin{DoxyCompactList}\small\item\em Gets the type of the \mbox{\hyperlink{class_node}{Node}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_node_a806cee9c8ec4bcfd2f9ce8031b089b29}\label{class_node_a806cee9c8ec4bcfd2f9ce8031b089b29}} 
+void \mbox{\hyperlink{class_node_a806cee9c8ec4bcfd2f9ce8031b089b29}{set\+Tipo}} (Tipo tipo)
+\begin{DoxyCompactList}\small\item\em Sets the type of the \mbox{\hyperlink{class_node}{Node}}. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_node_a98ba03ab2272a479d3173932a40c3a41}{getX}} ()
+\begin{DoxyCompactList}\small\item\em Gets the x coordinate of the \mbox{\hyperlink{class_node}{Node}}. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_node_a55366d94e5244071158b45b31c43dd8b}{getY}} ()
+\begin{DoxyCompactList}\small\item\em Gets the y coordinate of the \mbox{\hyperlink{class_node}{Node}}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_a91d335587ff4158d88771feccf361b74}{is\+Visited}} ()
+\begin{DoxyCompactList}\small\item\em Gets the information if the \mbox{\hyperlink{class_node}{Node}} is visited. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_node_a6fe3ebcd0eaf9fece72dfbc0ffc257bb}\label{class_node_a6fe3ebcd0eaf9fece72dfbc0ffc257bb}} 
+void \mbox{\hyperlink{class_node_a6fe3ebcd0eaf9fece72dfbc0ffc257bb}{set\+Visited}} (bool visited)
+\begin{DoxyCompactList}\small\item\em Sets the boolean visited of the \mbox{\hyperlink{class_node}{Node}}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_node_a5999ff5a455f3c4ad55712ffee832ee3}{get\+Peso}} () const
+\begin{DoxyCompactList}\small\item\em Gets the weight of the \mbox{\hyperlink{class_node}{Node}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_node_a8b87f38557da58da35446bdda4e80f32}\label{class_node_a8b87f38557da58da35446bdda4e80f32}} 
+void \mbox{\hyperlink{class_node_a8b87f38557da58da35446bdda4e80f32}{set\+Peso}} (double peso)
+\begin{DoxyCompactList}\small\item\em Sets the weight of the \mbox{\hyperlink{class_node}{Node}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} $\ast$ \mbox{\hyperlink{class_node_abf3a15fdc951747ca71f6c5da782dffc}{get\+Caminho}} ()
+\begin{DoxyCompactList}\small\item\em Gets the way of the \mbox{\hyperlink{class_node}{Node}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_node_ac2774d12b10c4c967774a37fe5bc3c21}\label{class_node_ac2774d12b10c4c967774a37fe5bc3c21}} 
+void \mbox{\hyperlink{class_node_ac2774d12b10c4c967774a37fe5bc3c21}{set\+Caminho}} (\mbox{\hyperlink{class_node}{Node}} $\ast$caminho)
+\begin{DoxyCompactList}\small\item\em Sets the way of the \mbox{\hyperlink{class_node}{Node}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_node_a01788c18aef94f986ec563e8233365c1}\label{class_node_a01788c18aef94f986ec563e8233365c1}} 
+int {\bfseries queue\+Index} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_node_aaa40669ceede2bdca5ed19df3ef0eb65}\label{class_node_aaa40669ceede2bdca5ed19df3ef0eb65}} 
+\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\subsubsection{\texorpdfstring{Node()}{Node()}}
+{\footnotesize\ttfamily Node\+::\+Node (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{int}]{id,  }\item[{Tipo}]{tipo }\end{DoxyParamCaption})}
+
+
+
+Constructs the object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x coordinate of the \mbox{\hyperlink{class_node}{Node}}. \\
+\hline
+{\em y} & The y coordinate of the \mbox{\hyperlink{class_node}{Node}}. \\
+\hline
+{\em id} & The id of the \mbox{\hyperlink{class_node}{Node}}. \\
+\hline
+{\em Tipo} & The type of the \mbox{\hyperlink{class_node}{Node}}. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_node_abf3a15fdc951747ca71f6c5da782dffc}\label{class_node_abf3a15fdc951747ca71f6c5da782dffc}} 
+\index{Node@{Node}!getCaminho@{getCaminho}}
+\index{getCaminho@{getCaminho}!Node@{Node}}
+\subsubsection{\texorpdfstring{getCaminho()}{getCaminho()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_node}{Node}} $\ast$ Node\+::get\+Caminho (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the way of the \mbox{\hyperlink{class_node}{Node}}. 
+
+\begin{DoxyReturn}{Returns}
+The way of the \mbox{\hyperlink{class_node}{Node}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_a8e76b1e655f7e4264fc461c03ad00d56}\label{class_node_a8e76b1e655f7e4264fc461c03ad00d56}} 
+\index{Node@{Node}!getEstradas@{getEstradas}}
+\index{getEstradas@{getEstradas}!Node@{Node}}
+\subsubsection{\texorpdfstring{getEstradas()}{getEstradas()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_estrada}{Estrada}} $>$ Node\+::get\+Estradas (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the roads that leave this \mbox{\hyperlink{class_node}{Node}}. 
+
+\begin{DoxyReturn}{Returns}
+The rodes that leave this \mbox{\hyperlink{class_node}{Node}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_a3c7b8ccf4dab44216b997c5f63f11d9f}\label{class_node_a3c7b8ccf4dab44216b997c5f63f11d9f}} 
+\index{Node@{Node}!getId@{getId}}
+\index{getId@{getId}!Node@{Node}}
+\subsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily int Node\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the id of the \mbox{\hyperlink{class_node}{Node}}. 
+
+\begin{DoxyReturn}{Returns}
+The id of the \mbox{\hyperlink{class_node}{Node}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_a5999ff5a455f3c4ad55712ffee832ee3}\label{class_node_a5999ff5a455f3c4ad55712ffee832ee3}} 
+\index{Node@{Node}!getPeso@{getPeso}}
+\index{getPeso@{getPeso}!Node@{Node}}
+\subsubsection{\texorpdfstring{getPeso()}{getPeso()}}
+{\footnotesize\ttfamily double Node\+::get\+Peso (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the weight of the \mbox{\hyperlink{class_node}{Node}}. 
+
+\begin{DoxyReturn}{Returns}
+The weight of the \mbox{\hyperlink{class_node}{Node}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_a6ef1b0b19699e0b03c024121f8d5a340}\label{class_node_a6ef1b0b19699e0b03c024121f8d5a340}} 
+\index{Node@{Node}!getTipo@{getTipo}}
+\index{getTipo@{getTipo}!Node@{Node}}
+\subsubsection{\texorpdfstring{getTipo()}{getTipo()}}
+{\footnotesize\ttfamily Tipo Node\+::get\+Tipo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the type of the \mbox{\hyperlink{class_node}{Node}}. 
+
+\begin{DoxyReturn}{Returns}
+The type of the \mbox{\hyperlink{class_node}{Node}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_a98ba03ab2272a479d3173932a40c3a41}\label{class_node_a98ba03ab2272a479d3173932a40c3a41}} 
+\index{Node@{Node}!getX@{getX}}
+\index{getX@{getX}!Node@{Node}}
+\subsubsection{\texorpdfstring{getX()}{getX()}}
+{\footnotesize\ttfamily float Node\+::getX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the x coordinate of the \mbox{\hyperlink{class_node}{Node}}. 
+
+\begin{DoxyReturn}{Returns}
+The x coordinate of the \mbox{\hyperlink{class_node}{Node}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_a55366d94e5244071158b45b31c43dd8b}\label{class_node_a55366d94e5244071158b45b31c43dd8b}} 
+\index{Node@{Node}!getY@{getY}}
+\index{getY@{getY}!Node@{Node}}
+\subsubsection{\texorpdfstring{getY()}{getY()}}
+{\footnotesize\ttfamily float Node\+::getY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the y coordinate of the \mbox{\hyperlink{class_node}{Node}}. 
+
+\begin{DoxyReturn}{Returns}
+The y coordinate of the \mbox{\hyperlink{class_node}{Node}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_a91d335587ff4158d88771feccf361b74}\label{class_node_a91d335587ff4158d88771feccf361b74}} 
+\index{Node@{Node}!isVisited@{isVisited}}
+\index{isVisited@{isVisited}!Node@{Node}}
+\subsubsection{\texorpdfstring{isVisited()}{isVisited()}}
+{\footnotesize\ttfamily bool Node\+::is\+Visited (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the information if the \mbox{\hyperlink{class_node}{Node}} is visited. 
+
+\begin{DoxyReturn}{Returns}
+If the \mbox{\hyperlink{class_node}{Node}} is visited(true) or not(false). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_aa2521fef8b2cbf414a8b22a84baa196e}\label{class_node_aa2521fef8b2cbf414a8b22a84baa196e}} 
+\index{Node@{Node}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Node@{Node}}
+\subsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily bool Node\+::operator$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \&}]{vertex }\end{DoxyParamCaption}) const}
+
+
+
+Operador than less. 
+
+\begin{DoxyReturn}{Returns}
+If the \mbox{\hyperlink{class_node}{Node}} is lighter than another(true) or not(false). 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/node.\+h\item 
+src/node.\+cpp\end{DoxyCompactItemize}

@@ -1,6 +1,7 @@
 #include "map.h"
 #include "graphviewer.h"
 
+
 /*FUNCTIONS FOR CLASS NODE*/
 
 /**
@@ -57,7 +58,6 @@ bool Map::addEstrada (int id, int nodeIdInicio, int nodeIdDestino) {
 	}
 
 }
-
 /**
  * @brief      Constructs the object.
  *
@@ -133,7 +133,6 @@ Map::Map (string cidade) {
 	}
 
 }
-
 /**
  * @brief      Gets the points of the map.
  *
@@ -142,7 +141,6 @@ Map::Map (string cidade) {
 std::vector<Node*> Map::getPontos() {
 	return this->pontos;
 }
-
 /**
  * @brief      Gets the points of interest of the map.
  *
@@ -151,7 +149,6 @@ std::vector<Node*> Map::getPontos() {
 std::vector<Node*> Map::getInterece() {
 	return this->interece;
 }
-
 /**
  * @brief      Gets the solution of the map.
  *
@@ -160,7 +157,6 @@ std::vector<Node*> Map::getInterece() {
 std::vector<Node*> Map::getSolucao() {
 	return this->solucao;
 }
-
 /**
  * @brief      Gets the roads of the map.
  *
@@ -169,14 +165,12 @@ std::vector<Node*> Map::getSolucao() {
 std::vector<Estrada*> Map::getEstradas() {
 	return this->estradas;
 }
-
 /**
 * @brief      Function to add a point of interest on the map.
 */
 void Map::addPontoInterece (Node* node) {
 	this->interece.push_back(node);
 }
-
 /**
 * @brief      Function to remove a point of interest on the map.
 */
@@ -188,7 +182,6 @@ void Map::removePontoInterece (Node* node) {
 		}
 	}
 }
-
 /**
 * @brief      Function that receives the starting point and makes the solution of the way.
 */
@@ -228,7 +221,6 @@ void Map::solution (Node* pontoInicial) {
 
 
 }
-
 /**
  * @brief      Gets the destination weight with dijkstra algorithm.
  *
@@ -253,7 +245,6 @@ double Map::dijkstra (Node* init, Node* dest) {
 	}
 	return dest->getPeso();
 }
-
 /**
  * @brief      Gets the best way to go from initial point to destination point.
  *
@@ -269,7 +260,6 @@ std::vector<Node*> Map::getCaminho(Node* init, Node* dest) {
 	reverse(solucaoTemporaria.begin(), solucaoTemporaria.end());
 	return solucaoTemporaria;
 }
-
 /**
  * @brief      Gets the information if the weight of the neighbor node is heavier than the weight of the edge plus the weight of the visited node.
  *
@@ -287,7 +277,6 @@ bool Map::pesoMelhor (Node* nodeVisitado, Node* nodeVizinho, double pesoArresta)
 		return false;
 	}
 }
-
 /**
 * @brief      Function to initialize the Dijkstra algorithm.
 */
@@ -300,7 +289,6 @@ void Map::inicializacaoDijkstra(Node* pontoInicial) {
 	pontoInicial->setPeso(0);
 
 }
-
 /**
 * @brief      Function to paint the map solution.
 */
@@ -356,14 +344,12 @@ void Map::iluminaSolucaoMapa(VETV* carro) {
 		}
 	}
 }
-
 /**
 * @brief      Function to exit the window.
 */
 void Map::exit() {
 	this->graphviewer->closeWindow();
 }
-
 /**
  * @brief      Gets the cars.
  *
@@ -372,14 +358,12 @@ void Map::exit() {
 std::vector<VETV* > Map::getCarros() {
 	return this->carros;
 }
-
 /**
 * @brief      Function to add a car.
 */
 void Map::addCar(VETV* carro) {
 	this->carros.push_back(carro);
 }
-
 /**
 * @brief      Function to make the shortest way for all available cars.
 */
@@ -438,7 +422,6 @@ void Map::solution2() {
 	}
 
 }
-
 /**
 * @brief      Function to clear the map color.
 */
@@ -460,7 +443,6 @@ void Map::clearVisitado() {
 		this->collectionPoint[i]->setVisited(false);
 	}
 }
-
 /**
  * @brief      Gets map collection points.
  *

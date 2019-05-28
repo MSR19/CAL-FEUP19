@@ -7,11 +7,12 @@
 
 void exercicios()
 {
-Menu* menu = new Menu();
-menu->initialMenu();
+	Menu *menu = new Menu();
+	menu->initialMenu();
 }
 
-int main() {
+int main()
+{
 	exercicios();
 	getchar();
 	return 0;

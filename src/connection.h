@@ -19,13 +19,15 @@
 
 using namespace std;
 
-class Connection {
- public:
+class Connection
+{
+public:
   Connection(short port);
 
   bool sendMsg(string msg);
   string readLine();
- private: 
+
+private:
 #ifdef linux
   int sock;
 #else

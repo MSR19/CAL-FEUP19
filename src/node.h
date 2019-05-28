@@ -6,7 +6,8 @@
 
 class Estrada;
 
-enum Tipo {
+enum Tipo
+{
 	BANCOS,
 	MUSEUS,
 	CORREIO_URGENTE,
@@ -14,46 +15,40 @@ enum Tipo {
 	NONE,
 };
 
-class Node {
+class Node
+{
 private:
-		int id;
-		Tipo tipo;
-		float x, y;
-		double peso;
-		std::vector<Estrada> estradas;
-		bool visited;
+	int id;
+	Tipo tipo;
+	float x, y;
+	double peso;
+	std::vector<Estrada> estradas;
+	bool visited;
 
-		void addEstrada(Node *dest, double peso);
-		bool removeEdgeTo(Node *dest);
-		Node* caminho = NULL;
+	void addEstrada(Node *dest, double peso);
+	bool removeEdgeTo(Node *dest);
+	Node *caminho = NULL;
 
 public:
-		Node(float x, float y, int id, Tipo tipo);
+	Node(float x, float y, int id, Tipo tipo);
 
-		bool operator<(Node& vertex) const; // // required by MutablePriorityQueue
+	bool operator<(Node &vertex) const; // // required by MutablePriorityQueue
 
-		int queueIndex = 0;
+	int queueIndex = 0;
 
-		std::vector<Estrada> getEstradas();
-		void addEstrada (Estrada estrada);
-		int getId();
-		Tipo getTipo();
-		void setTipo (Tipo tipo);
-		float getX();
-		float getY();
-		bool isVisited();
-		void setVisited(bool visited);
-		double getPeso() const;
-		void setPeso(double peso);
-		Node* getCaminho();
-		void setCaminho(Node* caminho);
+	std::vector<Estrada> getEstradas();
+	void addEstrada(Estrada estrada);
+	int getId();
+	Tipo getTipo();
+	void setTipo(Tipo tipo);
+	float getX();
+	float getY();
+	bool isVisited();
+	void setVisited(bool visited);
+	double getPeso() const;
+	void setPeso(double peso);
+	Node *getCaminho();
+	void setCaminho(Node *caminho);
 };
-
-
-
-
-
-
-
 
 #endif

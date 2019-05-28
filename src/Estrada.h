@@ -6,17 +6,18 @@
 
 class Node;
 
-class Estrada {
+class Estrada
+{
 	int id;
-	Node* ini;
-	Node* dest;
+	Node *ini;
+	Node *dest;
 	double peso;
+
 public:
-	Estrada(int id, Node* ini,Node *dest);
-	Node* getInicio();
-	Node* getDestino();
+	Estrada(int id, Node *ini, Node *dest);
+	Node *getInicio();
+	Node *getDestino();
 	double getPeso();
 };
-
 
 #endif

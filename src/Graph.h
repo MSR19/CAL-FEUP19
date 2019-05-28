@@ -8,32 +8,37 @@
 #include <queue>
 using namespace std;
 
-template <class T> class Edge;
-template <class T> class Graph;
-template <class T> class Vertex;
-
+template <class T>
+class Edge;
+template <class T>
+class Graph;
+template <class T>
+class Vertex;
 
 /****************** Provided structures  ********************/
 
 template <class T>
-class Vertex {
-	T info;                // contents
-	vector<Edge<T> > adj;  // list of outgoing edges
-	bool visited;          // auxiliary field used by dfs and bfs
-	int indegree;          // auxiliary field used by topsort
-	bool processing;       // auxiliary field used by isDAG
+class Vertex
+{
+	T info;				 // contents
+	vector<Edge<T>> adj; // list of outgoing edges
+	bool visited;		 // auxiliary field used by dfs and bfs
+	int indegree;		 // auxiliary field used by topsort
+	bool processing;	 // auxiliary field used by isDAG
 
 	void addEdge(Vertex<T> *dest, double w);
 	bool removeEdgeTo(Vertex<T> *d);
+
 public:
 	Vertex(T in);
 	friend class Graph<T>;
 };
 
 template <class T>
-class Edge {
-	Vertex<T> * dest;      // destination vertex
-	double weight;         // edge weight
+class Edge
+{
+	Vertex<T> *dest; // destination vertex
+	double weight;   // edge weight
 public:
 	Edge(Vertex<T> *d, double w);
 	friend class Graph<T>;
@@ -41,12 +46,14 @@ public:
 };
 
 template <class T>
-class Graph {
-	vector<Vertex<T> *> vertexSet;    // vertex set
+class Graph
+{
+	vector<Vertex<T> *> vertexSet; // vertex set
 
-	void dfsVisit(Vertex<T> *v,  vector<T> & res) const;
+	void dfsVisit(Vertex<T> *v, vector<T> &res) const;
 	Vertex<T> *findVertex(const T &in) const;
 	bool dfsIsDAG(Vertex<T> *v) const;
+
 public:
 	int getNumVertex() const;
 	bool addVertex(const T &in);
@@ -63,14 +70,14 @@ public:
 /****************** Provided constructors and functions ********************/
 
 template <class T>
-Vertex<T>::Vertex(T in): info(in) {}
+Vertex<T>::Vertex(T in) : info(in) {}
 
 template <class T>
-Edge<T>::Edge(Vertex<T> *d, double w): dest(d), weight(w) {}
-
+Edge<T>::Edge(Vertex<T> *d, double w) : dest(d), weight(w) {}
 
 template <class T>
-int Graph<T>::getNumVertex() const {
+int Graph<T>::getNumVertex() const
+{
 	return vertexSet.size();
 }
 
@@ -78,7 +85,8 @@ int Graph<T>::getNumVertex() const {
  * Auxiliary function to find a vertex with a given content.
  */
 template <class T>
-Vertex<T> * Graph<T>::findVertex(const T &in) const {
+Vertex<T> *Graph<T>::findVertex(const T &in) const
+{
 	for (auto v : vertexSet)
 		if (v->info == in)
 			return v;
@@ -92,7 +100,8 @@ Vertex<T> * Graph<T>::findVertex(const T &in) const {
  *  Returns true if successful, and false if a vertex with that content already exists.
  */
 template <class T>
-bool Graph<T>::addVertex(const T &in) {
+bool Graph<T>::addVertex(const T &in)
+{
 	// TODO (4 lines)
 	// HINT: use the findVertex function to check if a vertex already exists
 	return false;
@@ -106,7 +115,8 @@ bool Graph<T>::addVertex(const T &in) {
  * Returns true if successful, and false if the source or destination vertex does not exist.
  */
 template <class T>
-bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {
+bool Graph<T>::addEdge(const T &sourc, const T &dest, double w)
+{
 	// TODO (6 lines)
 	// HINT: use findVertex to obtain the actual vertices
 	// HINT: use the next function to actually add the edge
@@ -118,10 +128,10 @@ bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {
  * with a given destination vertex (d) and edge weight (w).
  */
 template <class T>
-void Vertex<T>::addEdge(Vertex<T> *d, double w) {
+void Vertex<T>::addEdge(Vertex<T> *d, double w)
+{
 	// TODO (1 line)
 }
-
 
 /****************** 1c) removeEdge ********************/
 
@@ -131,7 +141,8 @@ void Vertex<T>::addEdge(Vertex<T> *d, double w) {
  * Returns true if successful, and false if such edge does not exist.
  */
 template <class T>
-bool Graph<T>::removeEdge(const T &sourc, const T &dest) {
+bool Graph<T>::removeEdge(const T &sourc, const T &dest)
+{
 	// TODO (5 lines)
 	// HINT: Use "findVertex" to obtain the actual vertices.
 	// HINT: Use the next function to actually remove the edge.
@@ -144,12 +155,12 @@ bool Graph<T>::removeEdge(const T &sourc, const T &dest) {
  * Returns true if successful, and false if such edge does not exist.
  */
 template <class T>
-bool Vertex<T>::removeEdgeTo(Vertex<T> *d) {
+bool Vertex<T>::removeEdgeTo(Vertex<T> *d)
+{
 	// TODO (6 lines)
 	// HINT: use an iterator to scan the "adj" vector and then erase the edge.
 	return false;
 }
-
 
 /****************** 1d) removeVertex ********************/
 
@@ -159,13 +170,13 @@ bool Vertex<T>::removeEdgeTo(Vertex<T> *d) {
  *  Returns true if successful, and false if such vertex does not exist.
  */
 template <class T>
-bool Graph<T>::removeVertex(const T &in) {
+bool Graph<T>::removeVertex(const T &in)
+{
 	// TODO (10 lines)
 	// HINT: use an iterator to scan the "vertexSet" vector and then erase the vertex.
 	// HINT: take advantage of "removeEdgeTo" to remove incoming edges.
 	return false;
 }
-
 
 /****************** 2a) dfs ********************/
 
@@ -175,7 +186,8 @@ bool Graph<T>::removeVertex(const T &in) {
  * Follows the algorithm described in theoretical classes.
  */
 template <class T>
-vector<T> Graph<T>::dfs() const {
+vector<T> Graph<T>::dfs() const
+{
 	// TODO (7 lines)
 	vector<T> res;
 	return res;
@@ -186,7 +198,8 @@ vector<T> Graph<T>::dfs() const {
  * Updates a parameter with the list of visited node contents.
  */
 template <class T>
-void Graph<T>::dfsVisit(Vertex<T> *v, vector<T> & res) const {
+void Graph<T>::dfsVisit(Vertex<T> *v, vector<T> &res) const
+{
 	// TODO (7 lines)
 }
 
@@ -199,7 +212,8 @@ void Graph<T>::dfsVisit(Vertex<T> *v, vector<T> & res) const {
  * Follows the algorithm described in theoretical classes.
  */
 template <class T>
-vector<T> Graph<T>::bfs(const T & source) const {
+vector<T> Graph<T>::bfs(const T &source) const
+{
 	// TODO (22 lines)
 	// HINT: Use the flag "visited" to mark newly discovered vertices .
 	// HINT: Use the "queue<>" class to temporarily store the vertices.
@@ -216,8 +230,9 @@ vector<T> Graph<T>::bfs(const T & source) const {
  * Follows the algorithm described in theoretical classes.
  */
 
-template<class T>
-vector<T> Graph<T>::topsort() const {
+template <class T>
+vector<T> Graph<T>::topsort() const
+{
 	// TODO (26 lines)
 	vector<T> res;
 	return res;
@@ -234,7 +249,8 @@ vector<T> Graph<T>::topsort() const {
  */
 
 template <class T>
-int Graph<T>::maxNewChildren(const T & source, T &inf) const {
+int Graph<T>::maxNewChildren(const T &source, T &inf) const
+{
 	// TODO (28 lines, mostly reused)
 	return 0;
 }
@@ -250,7 +266,8 @@ int Graph<T>::maxNewChildren(const T & source, T &inf) const {
  */
 
 template <class T>
-bool Graph<T>::isDAG() const {
+bool Graph<T>::isDAG() const
+{
 	// TODO (9 lines, mostly reused)
 	// HINT: use the auxiliary field "processing" to mark the vertices in the stack.
 	return true;
@@ -261,7 +278,8 @@ bool Graph<T>::isDAG() const {
  * Returns false (not acyclic) if an edge to a vertex in the stack is found.
  */
 template <class T>
-bool Graph<T>::dfsIsDAG(Vertex<T> *v) const {
+bool Graph<T>::dfsIsDAG(Vertex<T> *v) const
+{
 	// TODO (12 lines, mostly reused)
 	return true;
 }

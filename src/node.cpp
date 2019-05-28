@@ -1,6 +1,7 @@
 #include "node.h"
 
-Node::Node(float x, float y, int id, Tipo tipo) {
+Node::Node(float x, float y, int id, Tipo tipo)
+{
 	this->x = x;
 	this->y = y;
 	this->id = id;
@@ -8,58 +9,72 @@ Node::Node(float x, float y, int id, Tipo tipo) {
 	this->visited = false;
 }
 
-std::vector<Estrada> Node::getEstradas() {
+std::vector<Estrada> Node::getEstradas()
+{
 	return this->estradas;
 }
 
-void Node::addEstrada (Estrada estrada) {
+void Node::addEstrada(Estrada estrada)
+{
 	this->estradas.push_back(estrada);
 }
 
-int Node::getId() {
+int Node::getId()
+{
 	return this->id;
 }
 
-float Node::getX() {
+float Node::getX()
+{
 	return this->x;
 }
 
-float Node::getY() {
+float Node::getY()
+{
 	return this->y;
 }
 
-Tipo Node::getTipo() {
+Tipo Node::getTipo()
+{
 	return this->tipo;
 }
 
-void Node::setTipo(Tipo tipo) {
+void Node::setTipo(Tipo tipo)
+{
 	this->tipo = tipo;
 }
 
-bool Node::isVisited() {
+bool Node::isVisited()
+{
 	return this->visited;
 }
 
-void Node::setVisited(bool visited) {
+void Node::setVisited(bool visited)
+{
 	this->visited = visited;
 }
 
-double Node::getPeso() const{
+double Node::getPeso() const
+{
 	return this->peso;
 }
 
-void Node::setPeso(double peso) {
+void Node::setPeso(double peso)
+{
 	this->peso = peso;
 }
 
-Node* Node::getCaminho() {
+Node *Node::getCaminho()
+{
 	return this->caminho;
 }
 
-void Node::setCaminho(Node* caminho) {
+void Node::setCaminho(Node *caminho)
+{
 	this->caminho = caminho;
 }
 
-bool Node::operator<(Node& vertex) const {
+bool Node::operator<(Node &vertex) const
+{
 	return this->getPeso() < vertex.getPeso();
 }

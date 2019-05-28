@@ -1,7 +1,11 @@
 #include "map.h"
 #include "graphviewer.h"
 
+/*FUNCTIONS FOR CLASS NODE*/
 
+/**
+* @brief      Function to add a node to the map.
+*/
 void Map::addNode (int id, float x, float y, Tipo tipo) {
 	Node* novo = new Node(x, y, id, tipo);
 	this->pontos.push_back(novo);
@@ -12,6 +16,11 @@ void Map::addNode (int id, float x, float y, Tipo tipo) {
 	}
 }
 
+/**
+ * @brief      Gets the information if it is possible to add the road on the map.
+ *
+ * @return     Whether it is possible to add the road(true) or not(false).
+ */
 bool Map::addEstrada (int id, int nodeIdInicio, int nodeIdDestino) {
 	Node* inicio = NULL;
 	Node* destino = NULL;
@@ -49,6 +58,11 @@ bool Map::addEstrada (int id, int nodeIdInicio, int nodeIdDestino) {
 
 }
 
+/**
+ * @brief      Constructs the object.
+ *
+ * @param  cidade     	The city of the Map.
+ */
 Map::Map (string cidade) {
 	cout << "É a criar isto?";
 	GraphViewer *gv = new GraphViewer(500, 500,false);
@@ -120,26 +134,52 @@ Map::Map (string cidade) {
 
 }
 
+/**
+ * @brief      Gets the points of the map.
+ *
+ * @return     The points of the map.
+ */
 std::vector<Node*> Map::getPontos() {
 	return this->pontos;
 }
 
+/**
+ * @brief      Gets the points of interest of the map.
+ *
+ * @return     The points of interest of the map.
+ */
 std::vector<Node*> Map::getInterece() {
 	return this->interece;
 }
 
+/**
+ * @brief      Gets the solution of the map.
+ *
+ * @return     The solution of the map.
+ */
 std::vector<Node*> Map::getSolucao() {
 	return this->solucao;
 }
 
+/**
+ * @brief      Gets the roads of the map.
+ *
+ * @return     The roads of the map.
+ */
 std::vector<Estrada*> Map::getEstradas() {
 	return this->estradas;
 }
 
+/**
+* @brief      Function to add a point of interest on the map.
+*/
 void Map::addPontoInterece (Node* node) {
 	this->interece.push_back(node);
 }
 
+/**
+* @brief      Function to remove a point of interest on the map.
+*/
 void Map::removePontoInterece (Node* node) {
 	for (unsigned int i = 0; i != this->interece.size(); i++) {
 		cout << interece[i]->getId() << endl;
@@ -149,6 +189,9 @@ void Map::removePontoInterece (Node* node) {
 	}
 }
 
+/**
+* @brief      Function that receives the starting point and makes the solution of the way.
+*/
 void Map::solution (Node* pontoInicial) {
 	this->atualizaInterreceAtual();
 	std::vector<Node*> solucaoTemporaria = {};
@@ -186,6 +229,11 @@ void Map::solution (Node* pontoInicial) {
 
 }
 
+/**
+ * @brief      Gets the destination weight with dijkstra algorithm.
+ *
+ * @return     The destination weight.
+ */
 double Map::dijkstra (Node* init, Node* dest) {
 	this->inicializacaoDijkstra(init);
 	MutablePriorityQueue<Node> q;
@@ -206,6 +254,11 @@ double Map::dijkstra (Node* init, Node* dest) {
 	return dest->getPeso();
 }
 
+/**
+ * @brief      Gets the best way to go from initial point to destination point.
+ *
+ * @return     the temporary solution.
+ */
 std::vector<Node*> Map::getCaminho(Node* init, Node* dest) {
 	std::vector<Node*> solucaoTemporaria;
 	if (dest->getPeso() == INF)
@@ -217,6 +270,11 @@ std::vector<Node*> Map::getCaminho(Node* init, Node* dest) {
 	return solucaoTemporaria;
 }
 
+/**
+ * @brief      Gets the information if the weight of the neighbor node is heavier than the weight of the edge plus the weight of the visited node.
+ *
+ * @return    If the weight of the neighbor node is heavier than the weight of the edge plus the weight of the visited node(true) or not(false);
+ */
 bool Map::pesoMelhor (Node* nodeVisitado, Node* nodeVizinho, double pesoArresta) {
 
 	if (nodeVizinho->getPeso() > pesoArresta + nodeVisitado->getPeso()) {
@@ -230,6 +288,9 @@ bool Map::pesoMelhor (Node* nodeVisitado, Node* nodeVizinho, double pesoArresta)
 	}
 }
 
+/**
+* @brief      Function to initialize the Dijkstra algorithm.
+*/
 void Map::inicializacaoDijkstra(Node* pontoInicial) {
 	for (Node* node : this->pontos) {
 		node->setCaminho(nullptr);
@@ -240,6 +301,9 @@ void Map::inicializacaoDijkstra(Node* pontoInicial) {
 
 }
 
+/**
+* @brief      Function to paint the map solution.
+*/
 void Map::iluminaSolucaoMapa(VETV* carro) {
 	for (unsigned int i = 0; i != carro->getCaminho().size(); i++)
 	{
@@ -293,18 +357,32 @@ void Map::iluminaSolucaoMapa(VETV* carro) {
 	}
 }
 
+/**
+* @brief      Function to exit the window.
+*/
 void Map::exit() {
 	this->graphviewer->closeWindow();
 }
 
+/**
+ * @brief      Gets the cars.
+ *
+ * @return     The cars.
+ */
 std::vector<VETV* > Map::getCarros() {
 	return this->carros;
 }
 
+/**
+* @brief      Function to add a car.
+*/
 void Map::addCar(VETV* carro) {
 	this->carros.push_back(carro);
 }
 
+/**
+* @brief      Function to make the shortest way for all available cars.
+*/
 void Map::solution2() {
 	this->clearVisitado();
 	this->cleanMapColor();
@@ -361,13 +439,18 @@ void Map::solution2() {
 
 }
 
+/**
+* @brief      Function to clear the map color.
+*/
 void Map::cleanMapColor() {
 	for (unsigned int i = 0; i != this->pontos.size(); i++) {
 		this->graphviewer->setVertexColor(this->pontos[i]->getId(), "blue");
 	}
 }
 
-
+/**
+* @brief      Function to clear visited.
+*/
 void Map::clearVisitado() {
 	for (unsigned int i = 0; i != this->interece.size(); i++) {
 		this->interece[i]->setVisited(false);
@@ -378,21 +461,37 @@ void Map::clearVisitado() {
 	}
 }
 
+/**
+ * @brief      Gets map collection points.
+ *
+ * @return     The map collection points.
+ */
 std::vector<Node* > Map::getCollectionPoint() {
 	return this->collectionPoint;
 }
+/**
+ * @brief      Gets map drop points.
+ *
+ * @return     The map drop points.
+ */
 std::vector<Node* > Map::getDropPoint() {
 	return this->dropPoint;
 }
-
+/**
+* @brief      Function to add a collection point to the map.
+*/
 void Map::addPontoCollection (Node* node) {
 	this->collectionPoint.push_back(node);
 }
-
+/**
+* @brief      Function to add a collection point to the map.
+*/
 void Map::addPontoDrop (Node* node) {
 	this->dropPoint.push_back(node);
 }
-
+/**
+* @brief      Function to update the current point of interest.
+*/
 void Map::atualizaInterreceAtual() {
 	this->intereceAtual = this->interece;
 	for (unsigned int i = 0; i != this->dropPoint.size(); i++)
@@ -403,7 +502,9 @@ void Map::atualizaInterreceAtual() {
 			this->intereceAtual.push_back(this->dropPoint[i]);
 	}
 }
-
+/**
+* @brief      Function to clear the way of cars.
+*/
 void Map::clarCarrosCaminhos() {
 	std::vector<Node* > vectorVazio = {};
 	for (unsigned int i = 0; i != carros.size(); i++) {

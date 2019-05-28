@@ -1,3 +1,7 @@
+/*
+ *@file map.h
+ *@brief header file containing the declaration of class map.
+ */
 #ifndef MAP_H_
 #define MAP_H_
 

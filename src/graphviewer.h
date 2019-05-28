@@ -1,4 +1,8 @@
-﻿#ifndef _GRAPH_VIEWER_H_
+/*
+ *@file graphviewer.h
+ *@brief header file containing the declaration of class graphviewer.
+ */
+#ifndef _GRAPH_VIEWER_H_
 #define _GRAPH_VIEWER_H_
 
 #ifdef linux

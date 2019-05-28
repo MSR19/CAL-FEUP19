@@ -1,3 +1,7 @@
+/*
+ *@file VETV.h
+ *@brief header file containing the declaration of class VETV.
+ */
 #ifndef	VETV_H_
 #define VETV_H_
 

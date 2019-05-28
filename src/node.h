@@ -1,3 +1,7 @@
+/*
+ *@file Node.h
+ *@brief header file containing the declaration of class Node.
+ */
 #ifndef NODE_H_
 #define NODE_H_
 

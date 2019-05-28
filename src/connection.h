@@ -1,3 +1,7 @@
+/*
+ *@file connection.h
+ *@brief header file containing the declaration of class connection.
+ */
 ﻿#ifndef _CONNECTION_
 #define _CONNECTION_
 
@@ -25,7 +29,7 @@ class Connection {
 
   bool sendMsg(string msg);
   string readLine();
- private: 
+ private:
 #ifdef linux
   int sock;
 #else

@@ -1,3 +1,8 @@
+/*
+ *@file Estrada.h
+ *@brief header file containing the declaration of class Estrada.
+ */
+ 
 #ifndef _ESTRADA_H_
 #define _ESTRADA_H_
 

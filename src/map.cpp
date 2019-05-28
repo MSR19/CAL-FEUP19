@@ -377,8 +377,8 @@ void Map::iluminaSolucaoMapa(bool Banks, bool Museums, bool Mails, bool Councils
 		if (Banks)
 		{
 			if (this->solucao[i]->getTipo() == BANCOS)
-				this->graphviewer->setVertexColor(this->solucao[i]->getId(), "BLUE");
-			else
+				this->graphviewer->setVertexColor(this->solucao[i]->getId(), "GREEN");
+			else if (this->solucao[i]->getTipo() != MUSEUS && this->solucao[i]->getTipo() != CORREIO_URGENTE && this->solucao[i]->getTipo() != JUNTAS)
 			{
 				this->graphviewer->setVertexColor(this->solucao[i]->getId(), "CYAN");
 			}
@@ -386,17 +386,17 @@ void Map::iluminaSolucaoMapa(bool Banks, bool Museums, bool Mails, bool Councils
 		else if (Museums)
 		{
 			if (this->solucao[i]->getTipo() == MUSEUS)
-				this->graphviewer->setVertexColor(this->solucao[i]->getId(), "YELLOW");
-			else
-			{
 				this->graphviewer->setVertexColor(this->solucao[i]->getId(), "ORANGE");
+			else if (this->solucao[i]->getTipo() != BANCOS && this->solucao[i]->getTipo() != CORREIO_URGENTE && this->solucao[i]->getTipo() != JUNTAS)
+			{
+				this->graphviewer->setVertexColor(this->solucao[i]->getId(), "YELLOW");
 			}
 		}
 		else if (Mails)
 		{
 			if (this->solucao[i]->getTipo() == CORREIO_URGENTE)
 				this->graphviewer->setVertexColor(this->solucao[i]->getId(), "RED");
-			else
+			else if (this->solucao[i]->getTipo() != BANCOS && this->solucao[i]->getTipo() != MUSEUS && this->solucao[i]->getTipo() != JUNTAS)
 			{
 				this->graphviewer->setVertexColor(this->solucao[i]->getId(), "PINK");
 			}
@@ -404,10 +404,10 @@ void Map::iluminaSolucaoMapa(bool Banks, bool Museums, bool Mails, bool Councils
 		else if (Councils)
 		{
 			if (this->solucao[i]->getTipo() == JUNTAS)
-				this->graphviewer->setVertexColor(this->solucao[i]->getId(), "DARK_GREY");
-			else
+				this->graphviewer->setVertexColor(this->solucao[i]->getId(), "DARK_GRAY");
+			else if (this->solucao[i]->getTipo() != BANCOS && this->solucao[i]->getTipo() != MUSEUS && this->solucao[i]->getTipo() != CORREIO_URGENTE)
 			{
-				this->graphviewer->setVertexColor(this->solucao[i]->getId(), "LIGHT_GREY");
+				this->graphviewer->setVertexColor(this->solucao[i]->getId(), "LIGHT_GRAY");
 			}
 		}
 		else

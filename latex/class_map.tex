@@ -1,0 +1,220 @@
+\hypertarget{class_map}{}\section{Map Class Reference}
+\label{class_map}\index{Map@{Map}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_map_a5376d6db6b0115c9260976e44f2956a0}{Map}} (string cidade)
+\begin{DoxyCompactList}\small\item\em Constructs the object. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ \mbox{\hyperlink{class_map_adfbd0b149bb751e0ac8696c75b7649a6}{get\+Pontos}} ()
+\begin{DoxyCompactList}\small\item\em Gets the points of the map. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ \mbox{\hyperlink{class_map_a1f3f1eff9d45c161fba74967a52a0d0f}{get\+Interece}} ()
+\begin{DoxyCompactList}\small\item\em Gets the points of interest of the map. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ \mbox{\hyperlink{class_map_ab13f74de95fc679221c7c46f327fb43e}{get\+Solucao}} ()
+\begin{DoxyCompactList}\small\item\em Gets the solution of the map. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_estrada}{Estrada}} $\ast$ $>$ \mbox{\hyperlink{class_map_acae882d7517fc82f90893cb5ffd08fee}{get\+Estradas}} ()
+\begin{DoxyCompactList}\small\item\em Gets the roads of the map. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ \mbox{\hyperlink{class_map_ab4147e61d5abf3134ec7c4701f539f4b}{get\+Collection\+Point}} ()
+\begin{DoxyCompactList}\small\item\em Gets map collection points. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ \mbox{\hyperlink{class_map_a28915a48f8ddc0b8573197241f496337}{get\+Drop\+Point}} ()
+\begin{DoxyCompactList}\small\item\em Gets map drop points. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_a6af4bf45d807e5da15f501061ec5c442}\label{class_map_a6af4bf45d807e5da15f501061ec5c442}} 
+void \mbox{\hyperlink{class_map_a6af4bf45d807e5da15f501061ec5c442}{add\+Ponto\+Interece}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Function to add a point of interest on the map. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_aa2509f1d5eaee4e379654b1ae9faf6bb}\label{class_map_aa2509f1d5eaee4e379654b1ae9faf6bb}} 
+void \mbox{\hyperlink{class_map_aa2509f1d5eaee4e379654b1ae9faf6bb}{add\+Ponto\+Collection}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Function to add a collection point to the map. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_a979210490d5717d8167e62ad0542eb6f}\label{class_map_a979210490d5717d8167e62ad0542eb6f}} 
+void \mbox{\hyperlink{class_map_a979210490d5717d8167e62ad0542eb6f}{add\+Ponto\+Drop}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Function to add a collection point to the map. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_aa384385be3a2c0e637d186d79c37ff9b}\label{class_map_aa384385be3a2c0e637d186d79c37ff9b}} 
+void \mbox{\hyperlink{class_map_aa384385be3a2c0e637d186d79c37ff9b}{remove\+Ponto\+Interece}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Function to remove a point of interest on the map. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_af897299c8bdd483b81eca5d8d2c1248d}\label{class_map_af897299c8bdd483b81eca5d8d2c1248d}} 
+void \mbox{\hyperlink{class_map_af897299c8bdd483b81eca5d8d2c1248d}{solution}} (\mbox{\hyperlink{class_node}{Node}} $\ast$ponto\+Inicial)
+\begin{DoxyCompactList}\small\item\em Function that receives the starting point and makes the solution of the way. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_map_a2469775f1933123c570f9a0dbf0b60a6}{dijkstra}} (\mbox{\hyperlink{class_node}{Node}} $\ast$init, \mbox{\hyperlink{class_node}{Node}} $\ast$dest)
+\begin{DoxyCompactList}\small\item\em Gets the destination weight with dijkstra algorithm. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ \mbox{\hyperlink{class_map_a3483fdf07f62ab1522be688ad25c8675}{get\+Caminho}} (\mbox{\hyperlink{class_node}{Node}} $\ast$init, \mbox{\hyperlink{class_node}{Node}} $\ast$dest)
+\begin{DoxyCompactList}\small\item\em Gets the best way to go from initial point to destination point. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_map_a61ca34a3511bed7fc0d97dea319c1c38}{peso\+Melhor}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node\+Candidato, \mbox{\hyperlink{class_node}{Node}} $\ast$node\+Vizinho, double peso)
+\begin{DoxyCompactList}\small\item\em Gets the information if the weight of the neighbor node is heavier than the weight of the edge plus the weight of the visited node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_a84ce82582d972df964371586761f9b04}\label{class_map_a84ce82582d972df964371586761f9b04}} 
+void \mbox{\hyperlink{class_map_a84ce82582d972df964371586761f9b04}{inicializacao\+Dijkstra}} (\mbox{\hyperlink{class_node}{Node}} $\ast$ponto\+Inicial)
+\begin{DoxyCompactList}\small\item\em Function to initialize the Dijkstra algorithm. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_a563e49ca8aa23d5681e1f5138582bc48}\label{class_map_a563e49ca8aa23d5681e1f5138582bc48}} 
+void \mbox{\hyperlink{class_map_a563e49ca8aa23d5681e1f5138582bc48}{ilumina\+Solucao\+Mapa}} (\mbox{\hyperlink{class_v_e_t_v}{V\+E\+TV}} $\ast$carro)
+\begin{DoxyCompactList}\small\item\em Function to paint the map solution. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_afc52747affd69dcd9f07344cb427b7b4}\label{class_map_afc52747affd69dcd9f07344cb427b7b4}} 
+void \mbox{\hyperlink{class_map_afc52747affd69dcd9f07344cb427b7b4}{exit}} ()
+\begin{DoxyCompactList}\small\item\em Function to exit the window. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_v_e_t_v}{V\+E\+TV}} $\ast$ $>$ \mbox{\hyperlink{class_map_a218f885f5ceecd3ac40b91cd4f79c545}{get\+Carros}} ()
+\begin{DoxyCompactList}\small\item\em Gets the cars. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_ad7539e02bfe15329f9da6b4322a1b076}\label{class_map_ad7539e02bfe15329f9da6b4322a1b076}} 
+void \mbox{\hyperlink{class_map_ad7539e02bfe15329f9da6b4322a1b076}{add\+Car}} (\mbox{\hyperlink{class_v_e_t_v}{V\+E\+TV}} $\ast$carro)
+\begin{DoxyCompactList}\small\item\em Function to add a car. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_a314e6c0a8c984d9bda9ffbb6baa31545}\label{class_map_a314e6c0a8c984d9bda9ffbb6baa31545}} 
+void \mbox{\hyperlink{class_map_a314e6c0a8c984d9bda9ffbb6baa31545}{solution2}} ()
+\begin{DoxyCompactList}\small\item\em Function to make the shortest way for all available cars. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_a7419b7cf9216949803b3074c6f74b76c}\label{class_map_a7419b7cf9216949803b3074c6f74b76c}} 
+void \mbox{\hyperlink{class_map_a7419b7cf9216949803b3074c6f74b76c}{clear\+Visitado}} ()
+\begin{DoxyCompactList}\small\item\em Function to clear visited. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_a8f3af5f1841089e8b461f9ab17690d81}\label{class_map_a8f3af5f1841089e8b461f9ab17690d81}} 
+void \mbox{\hyperlink{class_map_a8f3af5f1841089e8b461f9ab17690d81}{clean\+Map\+Color}} ()
+\begin{DoxyCompactList}\small\item\em Function to clear the map color. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_map_a5376d6db6b0115c9260976e44f2956a0}\label{class_map_a5376d6db6b0115c9260976e44f2956a0}} 
+\index{Map@{Map}!Map@{Map}}
+\index{Map@{Map}!Map@{Map}}
+\subsubsection{\texorpdfstring{Map()}{Map()}}
+{\footnotesize\ttfamily Map\+::\+Map (\begin{DoxyParamCaption}\item[{string}]{cidade }\end{DoxyParamCaption})}
+
+
+
+Constructs the object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cidade} & The city of the \mbox{\hyperlink{class_map}{Map}}. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_map_a2469775f1933123c570f9a0dbf0b60a6}\label{class_map_a2469775f1933123c570f9a0dbf0b60a6}} 
+\index{Map@{Map}!dijkstra@{dijkstra}}
+\index{dijkstra@{dijkstra}!Map@{Map}}
+\subsubsection{\texorpdfstring{dijkstra()}{dijkstra()}}
+{\footnotesize\ttfamily double Map\+::dijkstra (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{init,  }\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{dest }\end{DoxyParamCaption})}
+
+
+
+Gets the destination weight with dijkstra algorithm. 
+
+\begin{DoxyReturn}{Returns}
+The destination weight. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_map_a3483fdf07f62ab1522be688ad25c8675}\label{class_map_a3483fdf07f62ab1522be688ad25c8675}} 
+\index{Map@{Map}!getCaminho@{getCaminho}}
+\index{getCaminho@{getCaminho}!Map@{Map}}
+\subsubsection{\texorpdfstring{getCaminho()}{getCaminho()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ Map\+::get\+Caminho (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{init,  }\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{dest }\end{DoxyParamCaption})}
+
+
+
+Gets the best way to go from initial point to destination point. 
+
+\begin{DoxyReturn}{Returns}
+the temporary solution. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_map_a218f885f5ceecd3ac40b91cd4f79c545}\label{class_map_a218f885f5ceecd3ac40b91cd4f79c545}} 
+\index{Map@{Map}!getCarros@{getCarros}}
+\index{getCarros@{getCarros}!Map@{Map}}
+\subsubsection{\texorpdfstring{getCarros()}{getCarros()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_v_e_t_v}{V\+E\+TV}} $\ast$ $>$ Map\+::get\+Carros (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the cars. 
+
+\begin{DoxyReturn}{Returns}
+The cars. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_map_ab4147e61d5abf3134ec7c4701f539f4b}\label{class_map_ab4147e61d5abf3134ec7c4701f539f4b}} 
+\index{Map@{Map}!getCollectionPoint@{getCollectionPoint}}
+\index{getCollectionPoint@{getCollectionPoint}!Map@{Map}}
+\subsubsection{\texorpdfstring{getCollectionPoint()}{getCollectionPoint()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ Map\+::get\+Collection\+Point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets map collection points. 
+
+\begin{DoxyReturn}{Returns}
+The map collection points. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_map_a28915a48f8ddc0b8573197241f496337}\label{class_map_a28915a48f8ddc0b8573197241f496337}} 
+\index{Map@{Map}!getDropPoint@{getDropPoint}}
+\index{getDropPoint@{getDropPoint}!Map@{Map}}
+\subsubsection{\texorpdfstring{getDropPoint()}{getDropPoint()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ Map\+::get\+Drop\+Point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets map drop points. 
+
+\begin{DoxyReturn}{Returns}
+The map drop points. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_map_acae882d7517fc82f90893cb5ffd08fee}\label{class_map_acae882d7517fc82f90893cb5ffd08fee}} 
+\index{Map@{Map}!getEstradas@{getEstradas}}
+\index{getEstradas@{getEstradas}!Map@{Map}}
+\subsubsection{\texorpdfstring{getEstradas()}{getEstradas()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_estrada}{Estrada}} $\ast$ $>$ Map\+::get\+Estradas (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the roads of the map. 
+
+\begin{DoxyReturn}{Returns}
+The roads of the map. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_map_a1f3f1eff9d45c161fba74967a52a0d0f}\label{class_map_a1f3f1eff9d45c161fba74967a52a0d0f}} 
+\index{Map@{Map}!getInterece@{getInterece}}
+\index{getInterece@{getInterece}!Map@{Map}}
+\subsubsection{\texorpdfstring{getInterece()}{getInterece()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ Map\+::get\+Interece (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the points of interest of the map. 
+
+\begin{DoxyReturn}{Returns}
+The points of interest of the map. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_map_adfbd0b149bb751e0ac8696c75b7649a6}\label{class_map_adfbd0b149bb751e0ac8696c75b7649a6}} 
+\index{Map@{Map}!getPontos@{getPontos}}
+\index{getPontos@{getPontos}!Map@{Map}}
+\subsubsection{\texorpdfstring{getPontos()}{getPontos()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ Map\+::get\+Pontos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the points of the map. 
+
+\begin{DoxyReturn}{Returns}
+The points of the map. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_map_ab13f74de95fc679221c7c46f327fb43e}\label{class_map_ab13f74de95fc679221c7c46f327fb43e}} 
+\index{Map@{Map}!getSolucao@{getSolucao}}
+\index{getSolucao@{getSolucao}!Map@{Map}}
+\subsubsection{\texorpdfstring{getSolucao()}{getSolucao()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} $\ast$ $>$ Map\+::get\+Solucao (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the solution of the map. 
+
+\begin{DoxyReturn}{Returns}
+The solution of the map. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_map_a61ca34a3511bed7fc0d97dea319c1c38}\label{class_map_a61ca34a3511bed7fc0d97dea319c1c38}} 
+\index{Map@{Map}!pesoMelhor@{pesoMelhor}}
+\index{pesoMelhor@{pesoMelhor}!Map@{Map}}
+\subsubsection{\texorpdfstring{pesoMelhor()}{pesoMelhor()}}
+{\footnotesize\ttfamily bool Map\+::peso\+Melhor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node\+Visitado,  }\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node\+Vizinho,  }\item[{double}]{peso\+Arresta }\end{DoxyParamCaption})}
+
+
+
+Gets the information if the weight of the neighbor node is heavier than the weight of the edge plus the weight of the visited node. 
+
+\begin{DoxyReturn}{Returns}
+If the weight of the neighbor node is heavier than the weight of the edge plus the weight of the visited node(true) or not(false); 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/map.\+h\item 
+src/map.\+cpp\end{DoxyCompactItemize}

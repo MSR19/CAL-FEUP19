@@ -66,7 +66,7 @@ void Menu::initialMenu() {
  | |/ / _ `/ _ \  (_-</ _ \/ _/ __/ |/|/ / _ `/ __/ -_) /_/ 
  |___/\_,_/_//_/ /___/\___/_/ \__/|__,__/\_,_/_/  \__/ (_)                                                                                                                                                
 )" << endl;
-	std::cout << "What do you wish to do?" << endl;
+	std::cout << "What do you wish to do with only one car?" << endl;
 	std::cout << "1: Load the map" << endl;
 	std::cout << "2: Change the type of nodes" << endl;
 	std::cout << "3: View especial nodes" << endl;
@@ -303,7 +303,7 @@ void Menu::multipleCars() {
 	std::cout << "2: Create a car to make deliveries in museums" << endl;
 	std::cout << "3: Create a car to deliver express mails" << endl;
 	std::cout << "4: Create a car to make deliveries in councils" << endl;
-	std::cout << "5: Quit" << endl << endl;
+	std::cout << "5: Back" << endl << endl;
 
 	std::cout << "Chose the option you want: ";
 	answer = this->intHandler(5);

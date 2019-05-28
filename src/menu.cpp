@@ -265,7 +265,14 @@ void Menu::showSolution() {
 	int node = this->intHandler(nodes.size());
 	this->map->clearVisitado();
 	this->map->solution(this->map->getPontos()[node-1]);
+
+	auto start = std::chrono::high_resolution_clock::now();
+
 	std::vector<Node*> nodeSolucao = this->map->getSolucao();
+
+	auto finish = std::chrono::high_resolution_clock::now();
+	auto mili = chrono::duration_cast<chrono::milliseconds>(finish - start).count();
+	cout << "Nearest Neighbour took " << mili << " milliseconds\n";
 
 	//Shows the solution
 	cout << "The solution is the following" << endl;

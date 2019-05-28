@@ -47,7 +47,25 @@ std::string Menu::srtingHandler()
 void Menu::initialMenu() {
 	int answer;
 	do {
-	std::cout << "Welcome to Security Van software" << endl << endl;
+	std::cout << R"(
+  _      __    __                  
+ | | /| / /__ / /______  __ _  ___ 
+ | |/ |/ / -_) / __/ _ \/  ' \/ -_)
+ |__/|__/\__/_/\__/\___/_/_/_/\__/ 
+               __             
+              / /____   
+             / __/ _ \ 
+             \__/\___/  
+    ____                 _ __      
+   / __/__ ______ ______(_) /___ __
+  _\ \/ -_) __/ // / __/ / __/ // /
+ /___/\__/\__/\_,_/_/ /_/\__/\_, / 
+                            /___/  
+  _   __                     _____                        __
+ | | / /__ ____    ___ ___  / _/ /__    _____ ________   / /
+ | |/ / _ `/ _ \  (_-</ _ \/ _/ __/ |/|/ / _ `/ __/ -_) /_/ 
+ |___/\_,_/_//_/ /___/\___/_/ \__/|__,__/\_,_/_/  \__/ (_)                                                                                                                                                
+)" << endl;
 	std::cout << "What do you wish to do?" << endl;
 	std::cout << "1: Load the map" << endl;
 	std::cout << "2: Change the type of nodes" << endl;

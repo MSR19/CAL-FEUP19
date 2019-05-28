@@ -128,8 +128,28 @@ std::vector<Node*> Map::getInterece() {
 	return this->interece;
 }
 
+std::vector<Node*> Map::getIntereceBanks() {
+	return this->intereceBanks;
+}
+
+std::vector<Node*> Map::getIntereceMuseums() {
+	return this->intereceMuseums;
+}
+
+std::vector<Node*> Map::getIntereceMails() {
+	return this->intereceMails;
+}
+
+std::vector<Node*> Map::getIntereceCouncils() {
+	return this->intereceCouncils;
+}
+
 std::vector<Node*> Map::getSolucao() {
 	return this->solucao;
+}
+
+void Map::setSolucao(std::vector<Node*> vec) {
+	this->solucao = vec;
 }
 
 std::vector<Estrada*> Map::getEstradas() {
@@ -138,6 +158,22 @@ std::vector<Estrada*> Map::getEstradas() {
 
 void Map::addPontoInterece (Node* node) {
 	this->interece.push_back(node);
+}
+
+void Map::addPontoIntereceBanks (Node* node) {
+	this->intereceBanks.push_back(node);
+}
+
+void Map::addPontoIntereceMuseums (Node* node) {
+	this->intereceMuseums.push_back(node);
+}
+
+void Map::addPontoIntereceMails (Node* node) {
+	this->intereceMails.push_back(node);
+}
+
+void Map::addPontoIntereceCouncils (Node* node) {
+	this->intereceCouncils.push_back(node);
 }
 
 void Map::removePontoInterece (Node* node) {
@@ -149,12 +185,50 @@ void Map::removePontoInterece (Node* node) {
 	}
 }
 
-void Map::solution (Node* pontoInicial) {
+void Map::solution (Node* pontoInicial, bool Banks, bool Museums, bool Mails, bool Councils) {
 	std::vector<Node*> solucaoTemporaria = {};
 	Node* final = nullptr;
 	double pesoMenor = INF;
 
-	for (unsigned int i = 0; i != this->interece.size(); i++) {
+	if(Banks){
+		for (unsigned int i = 0; i != this->intereceBanks.size(); i++) {
+		if (!this->intereceBanks[i]->isVisited()) {
+			if (pesoMenor > this->dijkstra(pontoInicial, intereceBanks[i])){
+				solucaoTemporaria = this->getCaminho(pontoInicial, intereceBanks[i]);
+				final = intereceBanks[i];
+			}
+		}
+	}
+	}else if(Museums){
+		for (unsigned int i = 0; i != this->intereceMuseums.size(); i++) {
+		if (!this->intereceMuseums[i]->isVisited()) {
+			if (pesoMenor > this->dijkstra(pontoInicial, intereceMuseums[i])){
+				solucaoTemporaria = this->getCaminho(pontoInicial, intereceMuseums[i]);
+				final = intereceMuseums[i];
+			}
+		}
+	}
+	}else if(Mails){
+		for (unsigned int i = 0; i != this->intereceMails.size(); i++) {
+		if (!this->intereceMails[i]->isVisited()) {
+			if (pesoMenor > this->dijkstra(pontoInicial, intereceMails[i])){
+				solucaoTemporaria = this->getCaminho(pontoInicial, intereceMails[i]);
+				final = intereceMails[i];
+			}
+		}
+	}
+	}else if(Councils){
+		for (unsigned int i = 0; i != this->intereceCouncils.size(); i++) {
+		if (!this->intereceCouncils[i]->isVisited()) {
+			if (pesoMenor > this->dijkstra(pontoInicial, intereceCouncils[i])){
+				solucaoTemporaria = this->getCaminho(pontoInicial, intereceCouncils[i]);
+				final = intereceCouncils[i];
+			}
+		}
+	}
+	}
+	else{
+		for (unsigned int i = 0; i != this->interece.size(); i++) {
 		if (!this->interece[i]->isVisited()) {
 			if (pesoMenor > this->dijkstra(pontoInicial, interece[i])){
 				solucaoTemporaria = this->getCaminho(pontoInicial, interece[i]);
@@ -162,17 +236,19 @@ void Map::solution (Node* pontoInicial) {
 			}
 		}
 	}
+	}
+
 	if (final != nullptr) {
 		final->setVisited(true);
 
 		if (this->solucao.size() > 0 && solucaoTemporaria.size() > 0) {
 			if (this->solucao.size() > 1)
 				this->solucao.insert(this->solucao.end(), solucaoTemporaria.begin()+1, solucaoTemporaria.end());
-				this->solution(final);
+				this->solution(final, Banks, Museums, Mails, Councils);
 		}
 		else if (this->solucao.size() == 0){
 			this->solucao = solucaoTemporaria;
-			this->solution(final);
+			this->solution(final, Banks, Museums, Mails, Councils);
 		}
 	}
 	else {
@@ -245,14 +321,3 @@ void Map::iluminaSolucaoMapa() {
 void Map::exit() {
 	this->graphviewer->closeWindow();
 }
-
-void Map::addCar(VETV* carro) {
-	this->carros.push_back(carro);
-}
-
-void Map::solution2() {
-	//cenas que vao ser feitas
-}
-
-
-

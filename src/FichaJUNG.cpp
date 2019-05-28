@@ -3,35 +3,16 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-
 #include "menu.h"
 
-void exercicio1();
-void exercicio2();
-void exercicio3();
-
-
-void exercicio1()
+void exercicios()
 {
 Menu* menu = new Menu();
 menu->initialMenu();
 }
 
-void exercicio2()
-{
-
-}
-
-void exercicio3()
-{
-
-}
-
-
 int main() {
-	exercicio1();
-	//exercicio2();
-	//exercicio3();
+	exercicios();
 	getchar();
 	return 0;
 }

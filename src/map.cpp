@@ -178,7 +178,9 @@ void Map::solution (Node* pontoInicial) {
 	}
 	else {
 		this->cleanMapColor();
-		this->iluminaSolucaoMapa();
+		VETV* car = new VETV(ALL,new Node(0,0,0,ALL));
+		car->setCaminho(solucao);
+		this->iluminaSolucaoMapa(car);
 	}
 
 
@@ -238,9 +240,56 @@ void Map::inicializacaoDijkstra(Node* pontoInicial) {
 
 }
 
-void Map::iluminaSolucaoMapa() {
-	for (unsigned int i = 0; i != this->solucao.size(); i++) {
-		this->graphviewer->setVertexColor(this->solucao[i]->getId(), "red");
+void Map::iluminaSolucaoMapa(VETV* carro) {
+	for (unsigned int i = 0; i != carro->getCaminho().size(); i++)
+	{
+		if (carro->getTipo() == BANCOS)
+		{
+			if (carro->getCaminho()[i]->getTipo() == BANCOS)
+				this->graphviewer->setVertexColor(carro->getCaminho()[i]->getId(), "BLUE");
+			else
+			{
+				this->graphviewer->setVertexColor(carro->getCaminho()[i]->getId(), "CYAN");
+			}
+		}
+		else if (carro->getTipo() == MUSEUS)
+		{
+			if (carro->getCaminho()[i]->getTipo() == MUSEUS)
+				this->graphviewer->setVertexColor(carro->getCaminho()[i]->getId(), "YELLOW");
+			else
+			{
+				this->graphviewer->setVertexColor(carro->getCaminho()[i]->getId(), "ORANGE");
+			}
+		}
+		else if (carro->getTipo() == CORREIO_URGENTE)
+		{
+			if (carro->getCaminho()[i]->getTipo() == CORREIO_URGENTE)
+				this->graphviewer->setVertexColor(carro->getCaminho()[i]->getId(), "RED");
+			else
+			{
+				this->graphviewer->setVertexColor(carro->getCaminho()[i]->getId(), "PINK");
+			}
+		}
+		else if (carro->getTipo() == JUNTAS)
+		{
+			if (carro->getCaminho()[i]->getTipo() == JUNTAS)
+				this->graphviewer->setVertexColor(carro->getCaminho()[i]->getId(), "DARK_GREY");
+			else
+			{
+				this->graphviewer->setVertexColor(carro->getCaminho()[i]->getId(), "LIGHT_GREY");
+			}
+		}
+		else
+		{
+			if (carro->getCaminho()[i]->getTipo() == BANCOS || this->solucao[i]->getTipo() == MUSEUS || this->solucao[i]->getTipo() == CORREIO_URGENTE || this->solucao[i]->getTipo() == JUNTAS)
+			{
+				this->graphviewer->setVertexColor(carro->getCaminho()[i]->getId(), "BLACK");
+			}
+			else
+			{
+				this->graphviewer->setVertexColor(carro->getCaminho()[i]->getId(), "WHITE");
+			}
+		}
 	}
 }
 
@@ -307,9 +356,7 @@ void Map::solution2() {
 
 	//CORES//
 	for (unsigned int j = 0; j != carros.size(); j++) {
-		for (unsigned int i = 0; i != carros[j]->getCaminho().size(); i++) {
-			this->graphviewer->setVertexColor(carros[j]->getCaminho()[i]->getId(), "green");
-		}
+		this->iluminaSolucaoMapa(carros[j]);
 	}
 
 }
@@ -348,8 +395,10 @@ void Map::addPontoDrop (Node* node) {
 
 void Map::atualizaInterreceAtual() {
 	this->intereceAtual = this->interece;
-	for (unsigned int i = 0; i != this->dropPoint.size(); i++) {
+	for (unsigned int i = 0; i != this->dropPoint.size(); i++)
 		this->intereceAtual.push_back(this->collectionPoint[i]);
+
+	for (unsigned int i = 0; i != this->dropPoint.size(); i++) {
 		if (this->collectionPoint[i]->isVisited())
 			this->intereceAtual.push_back(this->dropPoint[i]);
 	}

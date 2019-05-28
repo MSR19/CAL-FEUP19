@@ -56,7 +56,7 @@ public:
 	std::vector<Node*> getCaminho(Node* init, Node* dest);
 	bool pesoMelhor (Node* nodeCandidato, Node* nodeVizinho, double peso);
 	void inicializacaoDijkstra(Node* pontoInicial);
-	void iluminaSolucaoMapa();
+	void iluminaSolucaoMapa(VETV* carro);
 	void exit();
 
 	//solution2

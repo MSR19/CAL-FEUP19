@@ -8,6 +8,8 @@ class Menu {
 private:
 	Map* map;
 
+	void showSepecialNode();
+	void showCars();
 	void changeNodesInVector(std::vector<Node* > nodes);
 	void showNodes(std::vector<Node* > nodes);
 	void showTipo(Node* node);

@@ -12,6 +12,7 @@ enum Tipo {
 	CORREIO_URGENTE,
 	JUNTAS,
 	NONE,
+	ALL,
 };
 
 class Node {

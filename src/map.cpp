@@ -150,15 +150,16 @@ void Map::removePontoInterece (Node* node) {
 }
 
 void Map::solution (Node* pontoInicial) {
+	this->atualizaInterreceAtual();
 	std::vector<Node*> solucaoTemporaria = {};
 	Node* final = nullptr;
 	double pesoMenor = INF;
 
-	for (unsigned int i = 0; i != this->interece.size(); i++) {
-		if (!this->interece[i]->isVisited()) {
-			if (pesoMenor > this->dijkstra(pontoInicial, interece[i])){
-				solucaoTemporaria = this->getCaminho(pontoInicial, interece[i]);
-				final = interece[i];
+	for (unsigned int i = 0; i != this->intereceAtual.size(); i++) {
+		if (!this->intereceAtual[i]->isVisited()) {
+			if (pesoMenor > this->dijkstra(pontoInicial, intereceAtual[i])){
+				solucaoTemporaria = this->getCaminho(pontoInicial, intereceAtual[i]);
+				final = intereceAtual[i];
 			}
 		}
 	}
@@ -176,6 +177,7 @@ void Map::solution (Node* pontoInicial) {
 		}
 	}
 	else {
+		this->cleanMapColor();
 		this->iluminaSolucaoMapa();
 	}
 
@@ -246,13 +248,116 @@ void Map::exit() {
 	this->graphviewer->closeWindow();
 }
 
+std::vector<VETV* > Map::getCarros() {
+	return this->carros;
+}
+
 void Map::addCar(VETV* carro) {
 	this->carros.push_back(carro);
 }
 
 void Map::solution2() {
-	//cenas que vao ser feitas
+	this->clearVisitado();
+	this->cleanMapColor();
+
+	this->atualizaInterreceAtual();
+
+	std::vector<Node* > vectorVazio = {};
+	std::vector<Node* > solucaoTemporaria = {};
+	std::vector<Node* > solucaoTemporariaFinal = {};
+	VETV* final = nullptr;
+	double pesoMenor = INF;
+
+
+	for (unsigned int i = 0; i != this->intereceAtual.size(); i++) {
+		if (!this->intereceAtual[i]->isVisited()) {
+			for (unsigned int j = 0; j != carros.size(); j++) {
+				if (carros[j]->getTipo() == this->intereceAtual[i]->getTipo() || carros[j]->getTipo() == ALL) {
+					int pesoDijkstra;
+					if (carros[j]->getCaminho().size() == 0)
+						pesoDijkstra = this->dijkstra(carros[j]->getPontoInicail(), intereceAtual[i]);
+					else
+						pesoDijkstra = this->dijkstra(carros[j]->getCaminho()[carros[j]->getCaminho().size()-1], intereceAtual[i]);
+
+					if (pesoMenor > pesoDijkstra){
+						solucaoTemporaria = this->getCaminho(carros[j]->getPontoInicail(), intereceAtual[i]);
+						if (final == nullptr) {
+							final = carros[j];
+							solucaoTemporariaFinal = solucaoTemporaria;
+						}
+						else if ((final->getCaminho()[final->getCaminho().size()-1]->getPeso() + solucaoTemporariaFinal[solucaoTemporariaFinal.size()-1]->getPeso())
+								> (carros[j]->getCaminho()[carros[j]->getCaminho().size()-1]->getPeso() + pesoDijkstra)) {
+							final = carros[j];
+							solucaoTemporariaFinal = solucaoTemporaria;
+						}
+					}
+				}
+			}
+		}
+		if (final != nullptr) {
+			//Apend do caminho ao final
+			this->intereceAtual[i]->setVisited(true);
+			solucaoTemporaria = final->getCaminho();
+			solucaoTemporaria.insert(solucaoTemporaria.end(), solucaoTemporariaFinal.begin()+1, solucaoTemporariaFinal.end());
+			final->setCaminho(solucaoTemporaria);
+			final = nullptr;
+		}
+		this->atualizaInterreceAtual();
+	}
+
+	//CORES//
+	for (unsigned int j = 0; j != carros.size(); j++) {
+		for (unsigned int i = 0; i != carros[j]->getCaminho().size(); i++) {
+			this->graphviewer->setVertexColor(carros[j]->getCaminho()[i]->getId(), "green");
+		}
+	}
+
+}
+
+void Map::cleanMapColor() {
+	for (unsigned int i = 0; i != this->pontos.size(); i++) {
+		this->graphviewer->setVertexColor(this->pontos[i]->getId(), "blue");
+	}
 }
 
 
+void Map::clearVisitado() {
+	for (unsigned int i = 0; i != this->interece.size(); i++) {
+		this->interece[i]->setVisited(false);
+	}
+	for (unsigned int i = 0; i != this->dropPoint.size(); i++) {
+		this->dropPoint[i]->setVisited(false);
+		this->collectionPoint[i]->setVisited(false);
+	}
+}
 
+std::vector<Node* > Map::getCollectionPoint() {
+	return this->collectionPoint;
+}
+std::vector<Node* > Map::getDropPoint() {
+	return this->dropPoint;
+}
+
+void Map::addPontoCollection (Node* node) {
+	this->collectionPoint.push_back(node);
+}
+
+void Map::addPontoDrop (Node* node) {
+	this->dropPoint.push_back(node);
+}
+
+void Map::atualizaInterreceAtual() {
+	this->intereceAtual = this->interece;
+	for (unsigned int i = 0; i != this->dropPoint.size(); i++) {
+		this->intereceAtual.push_back(this->collectionPoint[i]);
+		if (this->collectionPoint[i]->isVisited())
+			this->intereceAtual.push_back(this->dropPoint[i]);
+	}
+}
+
+void Map::clarCarrosCaminhos() {
+	std::vector<Node* > vectorVazio = {};
+	for (unsigned int i = 0; i != carros.size(); i++) {
+		this->carros[i]->setCaminho(vectorVazio);
+	}
+}

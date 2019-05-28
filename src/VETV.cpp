@@ -1,5 +1,10 @@
 #include "VETV.h"
 
+VETV::VETV(Tipo tipo, Node* pontoInicial) {
+	this->tipo = tipo;
+	this->pontoInicial = pontoInicial;
+}
+
 void VETV::setTipo(Tipo tipo) {
 	this->tipo = tipo;
 }

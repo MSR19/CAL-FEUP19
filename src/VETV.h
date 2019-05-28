@@ -12,6 +12,8 @@ private:
 	Node* pontoInicial;
 
 public:
+	VETV(Tipo tipo, Node* pontoInicial);
+
 	void setTipo(Tipo tipo);
 	Tipo getTipo();
 
